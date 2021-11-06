@@ -1,0 +1,17 @@
+@model List<User>
+
+@{
+    ViewData["Title"] = "Usuários";
+}
+<ul>
+    @foreach (var user in Model)
+    {
+        <li>
+            <p>@user.Id</p>
+            <p>@user.Name</p>
+            <p>@user.Email</p>
+            <p>@user.Phone</p>
+            <p>@user.Type.ToString()</p>
+        </li>
+    }
+</ul>
