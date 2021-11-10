@@ -9,13 +9,27 @@ namespace Alere.Models
     public class Address
     {
         public long AddressId { get; set; }
+
+        [Display(Name = "Rua")]
         public string Street { get; set; }
+
+        [Display(Name = "Número")]
         public string Number { get; set; }
+
+        [Display(Name = "Bairro")]
         public string District { get; set; }
+
+        [Display(Name = "CEP"), DataType(DataType.PostalCode)]
         public string ZipCode { get; set; }
+
+        [Display(Name = "Cidade")]
         public string City { get; set; }
+
+        [Display(Name = "Estado")]
         public State State { get; set; }
-        public string Complement { get; set; }
+
+        [Display(Name = "Complemento")]
+        public string? Complement { get; set; }
     }
 
     public enum State
