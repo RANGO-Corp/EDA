@@ -1,6 +1,6 @@
 using System;
 
-namespace EDA.Models
+namespace Alere.Models
 {
     public class ErrorViewModel
     {

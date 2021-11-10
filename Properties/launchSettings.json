@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "EDA": {
+    "Alere": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

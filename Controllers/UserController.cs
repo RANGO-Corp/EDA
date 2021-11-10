@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace EDA.Controllers
+namespace Alere.Controllers
 {
     public class UserController : Controller
     {
