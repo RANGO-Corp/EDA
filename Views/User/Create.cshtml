@@ -1,0 +1,60 @@
+@model User
+
+@{
+    ViewData["Title"] = "Cadastro";
+}
+
+<form action="">
+    <fieldset>
+        <caption>Usuário</caption>
+        <div>
+            <div class="form-floating mb-2">
+                <input asp-for="Name" class="form-control" />
+                <label asp-for="Name"></label>
+            </div>
+            <div class="form-floating mb-2">
+                <input asp-for="Phone" class="form-control" />
+                <label asp-for="Phone"></label>
+            </div>
+            <div class="form-floating mb-2">
+                <input asp-for="Email" class="form-control" />
+                <label asp-for="Email"></label>
+            </div>
+            <div class="form-floating mb-2">
+                <input asp-for="Password" class="form-control" />
+                <label asp-for="Password"></label>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <caption>Endereço</caption>
+        <div class="form-floating mb-2">
+            <input asp-for="Address.Street" class="form-control" />
+            <label asp-for="Address.Street"></label>
+        </div>
+        <div class="form-floating mb-2">
+            <input asp-for="Address.Number" class="form-control" />
+            <label asp-for="Address.Number"></label>
+        </div>
+        <div class="form-floating mb-2">
+            <input asp-for="Address.City" class="form-control" />
+            <label asp-for="Address.City"></label>
+        </div>
+        <div class="form-floating mb-2">
+            <input asp-for="Address.District" class="form-control" />
+            <label asp-for="Address.District"></label>
+        </div>
+        <div class="form-floating mb-2">
+            <select 
+                asp-for="Address.State" 
+                asp-items="Html.GetEnumSelectList<State>()"
+                class="form-select"
+            ></select>
+            <label asp-for="Address.State"></label>
+        </div>
+        <div class="form-floating mb-2">
+            <input asp-for="Address.ZipCode" class="form-control" />
+            <label asp-for="Address.ZipCode"></label>
+        </div>
+    </fieldset>
+</form>
