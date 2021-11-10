@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Usuários";
 }
+<a asp-controller="User" asp-action="Create">Criar Usuário</a>
 <ul>
     @foreach (var user in Model)
     {
@@ -12,6 +13,7 @@
             <p>@user.Email</p>
             <p>@user.Phone</p>
             <p>@user.Type.ToString()</p>
+            <a asp-action="Profile" asp-route-id="@user.UserId">Perfil</a>
         </li>
     }
 </ul>
