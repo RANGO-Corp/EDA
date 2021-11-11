@@ -1,13 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Alere.Models
 {
+    [Table("Tbl_Role")]
     public class Role
     {
-        public long Id { get; set; }
-        public string Description { get; set; }
+        [Column("Id")]
+        public long RoleId { get; set; }
+
+        public RoleDescription Description { get; set; }
+    }
+
+    public enum RoleDescription
+    {
+        [Display(Name = "Doador")] DONOR,
+        [Display(Name = "Receptor")] RECEIVER
     }
 }

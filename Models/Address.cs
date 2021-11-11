@@ -1,16 +1,20 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Alere.Models
 {
+    [Table("Tbl_Address")]
     public class Address
     {
+        [Column("Id"), HiddenInput]
         public long AddressId { get; set; }
 
-        [Display(Name = "Rua")]
+        [Display(Name = "Logradouro")]
         public string Street { get; set; }
 
         [Display(Name = "Número")]
@@ -29,7 +33,7 @@ namespace Alere.Models
         public State State { get; set; }
 
         [Display(Name = "Complemento")]
-        public string? Complement { get; set; }
+        public string Complement { get; set; }
     }
 
     public enum State

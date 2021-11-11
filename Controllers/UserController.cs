@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using Alere.Models;
+using Alere.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -13,16 +10,17 @@ namespace Alere.Controllers
     {
         private readonly ILogger<UserController> _logger;
 
-        private IList<User> _repo = new List<User>();
+        private FactoryContext _repo;
 
-        public UserController(ILogger<UserController> logger)
+        public UserController(ILogger<UserController> logger, FactoryContext repo)
         {
             _logger = logger;
+            _repo = repo;
         }
 
         public IActionResult Index()
         {
-            var users = _repo.ToList();
+            var users = _repo.Users.ToList();
 
             return View(users);
         }
@@ -36,7 +34,7 @@ namespace Alere.Controllers
         [HttpPost]
         public IActionResult Create(User user)
         {
-            _repo.Add(user);
+            _repo.Users.Add(user);
 
             TempData["msg"] = $"Usuário {user.Name} cadastrado com sucesso!";
 
@@ -46,7 +44,7 @@ namespace Alere.Controllers
         [HttpGet]
         public IActionResult Profile(long id)
         {
-            var user = _repo.Where(u => u.UserId == id);
+            var user = _repo.Users.Where(u => u.UserId == id);
 
             return View(user);
         }
@@ -54,11 +52,7 @@ namespace Alere.Controllers
         [HttpPost]
         public IActionResult Profile(User user)
         {
-            var userIndex = _repo.IndexOf(user);
-
-            _repo.RemoveAt(userIndex);
-
-            _repo.Add(user);
+            var userIndex = _repo.Users.Update(user);
 
             return RedirectToAction("Profile");
         }
