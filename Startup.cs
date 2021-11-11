@@ -1,5 +1,7 @@
 using System.Globalization;
 using Alere.Persistence;
+using Alere.Repositories;
+using Alere.Repositories.Impl;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +28,8 @@ namespace Alere
             services.AddDbContext<FactoryContext>(op =>
                 op.UseSqlServer(Configuration.GetConnectionString("local"))
             );
+
+            services.AddScoped<IUserRepository, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
