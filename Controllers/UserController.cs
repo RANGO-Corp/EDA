@@ -38,7 +38,7 @@ namespace Alere.Controllers
         {
             _repo.Add(user);
 
-            TempData["msg"] = "Usuário {user.Name} cadastrado com sucesso!";
+            TempData["msg"] = $"Usuário {user.Name} cadastrado com sucesso!";
 
             return RedirectToAction("Index");
         }

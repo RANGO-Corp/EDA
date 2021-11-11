@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Usuários";
 }
+
 <a asp-controller="User" asp-action="Create">Criar Usuário</a>
 <ul>
     @foreach (var user in Model)
@@ -13,7 +14,15 @@
             <p>@user.Email</p>
             <p>@user.Phone</p>
             <p>@user.Type.ToString()</p>
-            <a asp-action="Profile" asp-route-id="@user.UserId">Perfil</a>
+            <a  asp-controller="User" asp-action="Profile" asp-route-id="@user.UserId">Perfil</a>
         </li>
     }
 </ul>
+
+<div
+    condition='@TempData["msg"] != null'
+    class="position-fixed top-0 end-0 p-3 mt-5 w-25" 
+    style="z-index: 11"
+>
+  <alert message='@TempData["msg"]' dismissible="true"></alert>
+</div>
