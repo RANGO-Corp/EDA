@@ -19,28 +19,25 @@ namespace Alere.Models
 
         public bool? IsReserved { get; set; }
 
-        [Display(Name = "Reservado até")]
+        [Display(Name = "Reservado até"), DataType(DataType.Date)]
         public DateTime? ReservedUntil { get; set; }
 
         public bool? IsPerishable { get; set; }
 
-        [Display(Name = "Data de Fabricação")]
-        public DateTime ManufacturedAt { get; set; }
+        [Display(Name = "Data de Fabricação"), DataType(DataType.Date)]
+        public DateTime? ManufacturedAt { get; set; }
 
-        [Display(Name = "Data de Validade")]
+        [Display(Name = "Data de Validade"), DataType(DataType.Date)]
         public DateTime ExpireAt { get; set; }
 
         [Display(Name = "Imagem")]
         public string UrlImage { get; set; }
 
-        public double Latitude { get; set; }
-
-        public double Longitude { get; set; }
-
         [Display(Name = "Tipo do Alimento")]
         public FoodType Type { get; set; }
 
-        public User AnnouncedByUser { get; set; }
+        public User User { get; set; }
+        public long? UserId { get; set; }
     }
 
     public enum FoodType

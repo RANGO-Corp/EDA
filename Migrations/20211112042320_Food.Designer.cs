@@ -4,14 +4,16 @@ using Alere.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Alere.Migrations
 {
     [DbContext(typeof(FactoryContext))]
-    partial class FactoryContextModelSnapshot : ModelSnapshot
+    [Migration("20211112042320_Food")]
+    partial class Food
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,6 +63,9 @@ namespace Alere.Migrations
                         .HasColumnName("Id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long?>("AnnouncedByUserUserId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -88,12 +93,9 @@ namespace Alere.Migrations
                     b.Property<string>("UrlImage")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
-
                     b.HasKey("FoodId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("AnnouncedByUserUserId");
 
                     b.ToTable("Tbl_Food");
                 });
@@ -132,7 +134,7 @@ namespace Alere.Migrations
                 {
                     b.HasOne("Alere.Models.User", "AnnouncedByUser")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("AnnouncedByUserUserId");
 
                     b.Navigation("AnnouncedByUser");
                 });
