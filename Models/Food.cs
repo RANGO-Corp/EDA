@@ -22,7 +22,7 @@ namespace Alere.Models
         [Display(Name = "Reservado até"), DataType(DataType.Date)]
         public DateTime? ReservedUntil { get; set; }
 
-        public bool IsPerishable { get; set; }
+        public bool? IsPerishable { get; set; }
 
         [Display(Name = "Data de Fabricação"), DataType(DataType.Date)]
         public DateTime? ManufacturedAt { get; set; }

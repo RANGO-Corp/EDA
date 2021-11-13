@@ -22,7 +22,7 @@
     @foreach(var food in Model)
     {
         <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
+            <div class="card h-100">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
                         @food.Name
@@ -30,7 +30,7 @@
                 </div>
                 <a href="#" class="position-relative">
                     <span
-                        condition="@food.IsPerishable"
+                        condition="@food.IsPerishable.GetValueOrDefault(false)"
                         class="badge bg-dark text-white position-absolute top-0 end-0 mx-2 my-2"
                     >
                         Perecível
