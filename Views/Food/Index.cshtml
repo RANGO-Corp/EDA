@@ -49,7 +49,7 @@
                     <p class="card-text">@food.Description</p>
                 </div>
                 <div class="card-footer d-flex justify-content-between align-items-center">
-                    <small>@food.Type</small>
+                    <small>@(food.Type.GetAttribute<DisplayAttribute>().Name)</small>
                     <a href="#" class="btn btn-sm btn-primary">Reservar</a>
                 </div>
             </div>
