@@ -1,0 +1,114 @@
+<div
+    class="modal fade"
+    id="requitionFoodModal"
+    data-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="requitionFoodModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="requitionFoodModalLabel">Reservar doação</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form action="#">
+                <input type="hidden" name="id" id="FoodId" />
+
+                <div class="modal-body">
+                    <div class="input-group mb-2">
+                        <span class="input-group-text">Para</span>
+                        <span class="form-control">Ong Caridosa</span>
+                    </div>
+                    <div class="form-floating mb-2">
+                        <textarea
+                            class="form-control"
+                            placeholder="Digite uma mensagem para o doador"
+                            id="requisitionMessage"
+                            name="requisitionMessage"
+                            style="height: 100px"
+                        ></textarea>
+                        <label for="requisitionMessage">Mensagem</label>
+                    </div>
+
+                    <div class="accordion" id="accordionPanelsStayOpenExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                    Informações sobre o alimento
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+                                <div class="accordion-body">
+                                    <table class="table table-striped align-middle table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <td>Alimento</td>
+                                                <td>Banana Prata 1 Unidade Aprox. 150g</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Data de Fabricação</td>
+                                                <td>12/11/2021</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Data de Validade</td>
+                                                <td>23/11/2021</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Perecível?</td>
+                                                <td>Sim</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tipo do alimento</td>
+                                                <td>Orgânico</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Descrição</td>
+                                                <td>A Banana Prata é rica em vitamina C, e é ideal para fazer receitas fritas, não é tão doce quanto a banana nanica, mas também é ótima para preparar vitaminas. Um dos benefícios dessa fruta, é dar muita energia e pode ser usada para aumentar a sensação de saciedade e de bem estar, pois é rica em triptofano, um composto para melhorar o humor.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Informações sobre o doador
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <table class="table table-striped align-middle table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <td>Doador</td>
+                                                <td>Luís Paulino</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Contato</td>
+                                                <td>11555553333</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Localizado em</td>
+                                                <td>Osasco</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer justify-content-end">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
