@@ -11,7 +11,7 @@ namespace Alere.Models
         [HiddenInput, Column("Id")]
         public long RequisitionId { get; set; }
         [Column("Requisition_Date")]
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.Now;
         public Status Status { get; set; } = Status.AWAITING;
         public string Message { get; set; }
         

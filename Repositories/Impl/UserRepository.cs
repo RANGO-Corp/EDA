@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Alere.Models;
 using Alere.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Alere.Repositories.Impl
 {
@@ -28,6 +29,7 @@ namespace Alere.Repositories.Impl
         {
             return _context
                         .Users
+                        .Include(u => u.Address)
                         .Where(u => u.UserId == id)
                         .FirstOrDefault()
                     ;

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Alere.Models;
 using Alere.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Alere.Repositories.Impl
 {
@@ -21,7 +22,12 @@ namespace Alere.Repositories.Impl
 
         public IList<Food> FindAll()
         {
-            return _context.Foods.ToList();
+            return _context
+                        .Foods
+                        .Include(f => f.User)
+                        .Include(f => f.User.Address)
+                        .ToList()
+                    ;
         }
 
         public Food FindById(long id)
