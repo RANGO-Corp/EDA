@@ -21,23 +21,36 @@
     }
     @foreach(var food in Model)
     {
-        <div class="col-lg-4 col-md-6">
-            <div class="card mb-4">
-                <div class="card-header">@food.Name</div>
-                <a href="#">
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        @food.Name
+                    </div>
+                </div>
+                <a href="#" class="position-relative">
+                    <span
+                        condition="@food.IsPerishable"
+                        class="badge bg-dark text-white position-absolute top-0 end-0 mx-2 my-2"
+                    >
+                        Perecível
+                    </span>
+
                     <img
                         class="card-img-top" 
-                        alt="Foto de @food.Name por @food.User.Name" 
-                        src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" 
+                        alt="Alimento: @food.Name" 
+                        src='@(food.UrlImage != null ? food.UrlImage : "https://dummyimage.com/700x350/dee2e6/6c757d.jpg")'
                     />
                 </a>
                 <div class="card-body">
-                    <small class="text-muted">@food.User.Name</small>
-                    <h2 class="card-title h4">@food.Name</h2>
+                    <small class="text-muted">
+                        Vecimento: @food.ExpireAt.ToShortDateString()
+                    </small>
                     <p class="card-text">@food.Description</p>
                 </div>
-                <div class="card-footer d-flex">
-                    <a href="#" class="btn btn-primary">Reservar</a>
+                <div class="card-footer d-flex justify-content-between align-items-center">
+                    <small>@food.Type</small>
+                    <a href="#" class="btn btn-sm btn-primary">Reservar</a>
                 </div>
             </div>
         </div>
