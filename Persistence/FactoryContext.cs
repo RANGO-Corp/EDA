@@ -7,6 +7,7 @@ namespace Alere.Persistence
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Food> Foods { get; set; }
+        public DbSet<Requisition> Requisitions { get; set; }
 
         public FactoryContext(DbContextOptions options) : base(options) { }
 

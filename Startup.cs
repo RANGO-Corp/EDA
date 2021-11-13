@@ -31,6 +31,7 @@ namespace Alere
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IFoodRepository, FoodRepository>();
+            services.AddScoped<IRequisitionRepository, RequisitionRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
