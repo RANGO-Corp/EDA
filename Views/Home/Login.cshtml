@@ -1,0 +1,71 @@
+@{
+    Layout = "_Minimal";
+}
+@section Styles{
+    <link
+        rel="stylesheet"
+        href="~/css/login.css"
+    />
+}
+
+<main role="main" class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+    <div class="container">
+        <div class="login-card card rounded-3 shadow-lg overflow-hidden">
+            <div class="row gx-0">
+                <div class="col-md-5 position-relative login-card-img-wrapper">
+                    <img src="~/img/donation.svg" alt="login" class="login-card-img" />
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <div class="brand-wrapper">
+                            <img src="~/img/logo.svg" alt="logo" class="logo">
+                        </div>
+                        <p class="login-card-description">Realize o acesso</p>
+                        <form action="#!">
+                            <div class="mb-2">
+                                <label
+                                    for="email"
+                                    class="form-label visually-hidden"
+                                >Email</label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    id="email"
+                                    class="form-control"
+                                    placeholder="Endereço de email"
+                                />
+                            </div>
+                            <div class="mb-3">
+                                <label
+                                    for="password"
+                                    class="form-label visually-hidden"
+                                >Senha</label>
+                                <input
+                                    type="password"
+                                    name="password"
+                                    id="password"
+                                    class="form-control"
+                                    placeholder="***********"
+                                />
+                            </div>
+                            <div class="d-grid">
+                                <input
+                                    name="login"
+                                    id="login"
+                                    class="btn login-btn mb-4"
+                                    type="button"
+                                    value="Login"
+                                />
+                            </div>
+                            <p class="login-card-footer-text text-end">Não possui uma conta? <a href="#!" class="text-decoration-none text-reset">Registre-se aqui</a></p>
+                        </form>
+                        <nav class="login-card-footer-nav">
+                            <a href="#!" class="text-decoration-none">Termos de uso.</a>
+                            <a class="text-decoration-none" asp-controller="Home" asp-action="Privacy">Política de privacidade</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

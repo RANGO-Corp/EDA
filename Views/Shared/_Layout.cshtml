@@ -5,7 +5,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <partial name="Components/_Head" view-data="ViewData" />
+    <head>
+        <partial name="Components/_Head" view-data="ViewData" />
+        @await RenderSectionAsync("Styles", required: false)
+    </head>
 
     <body>
         <header>

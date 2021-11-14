@@ -1,0 +1,19 @@
+@{
+    ViewData["siteName"] = "Alere";
+    ViewData["corporation"] = "RANGO-Corp";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <partial name="Components/_Head" view-data="ViewData" />
+        @await RenderSectionAsync("Styles", required: false)
+    </head>
+
+    <body>
+        @RenderBody()
+
+        <partial name="Components/_Scripts" />
+        @await RenderSectionAsync("Scripts", required: false)
+    </body>
+</html>
