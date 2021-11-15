@@ -89,3 +89,13 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+/* Custom
+-------------------------------------------------- */
+.mw-toast {
+  max-width: 50%;
+}
+@media (min-width: 768px) {
+  .mw-toast {
+    max-width: 25%;
+  }
+}
