@@ -1,4 +1,5 @@
 using Alere.Helpers;
+using Alere.Models;
 using Alere.Repositories;
 using Alere.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -44,7 +45,7 @@ namespace Alere.Controllers
                 return RedirectToAction("Index", new { error = "Usuário não existente ou credenciais inválidas." });
             }
 
-            LoadToSession("user", user);
+            LoadToSession(SessionKeys.USER_KEY.ToString(), user);
             return RedirectToAction("Index", "Food");
         }
 
@@ -65,8 +66,15 @@ namespace Alere.Controllers
             _repo.Store(registerViewModel.User);
             _repo.Commit();
 
-            LoadToSession("user", registerViewModel.User);
+            LoadToSession(SessionKeys.USER_KEY.ToString(), registerViewModel.User);
             return RedirectToAction("Index", "Food");
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove(SessionKeys.USER_KEY.ToString());
+
+            return RedirectToAction("Index", "Home");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

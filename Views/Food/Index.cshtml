@@ -1,6 +1,7 @@
 @model List<Food>
 @{
     ViewData["Title"] = "Alimentos";
+    var user = SessionHelper.GetObjectFromSession<User>(Context.Session, SessionKeys.USER_KEY.ToString());
 }
 
 <div class="row">
@@ -53,7 +54,7 @@
                     <small>@(food.Type.GetAttribute<DisplayAttribute>().Name)</small>
                     <button
                         type="button"
-                        class="btn btn-sm btn-primary make-requisition"
+                        class='btn btn-sm btn-@(user != null ? "primary" : "outline-secondary") make-requisition'
                         data-bs-toggle="modal"
                         data-bs-target="#requitionFoodModal"
                         data-food-id="@food.FoodId"
@@ -76,7 +77,7 @@
     }
 </div>
 
-<partial name="_RequisitionModal" />
+<partial name='@(user != null ? "_RequisitionModal" : "_UserNotLoggedModal")' />
 
 @section Scripts {
     <script>
