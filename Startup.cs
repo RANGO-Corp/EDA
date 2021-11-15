@@ -25,6 +25,9 @@ namespace Alere
         {
             services.AddControllersWithViews();
 
+            // Enable Session
+            services.AddSession();
+
             services.AddDbContext<FactoryContext>(op =>
                 op.UseSqlServer(Configuration.GetConnectionString("local"))
             );
@@ -49,6 +52,9 @@ namespace Alere
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            // Use session
+            app.UseSession();
 
             app.UseRouting();
 
