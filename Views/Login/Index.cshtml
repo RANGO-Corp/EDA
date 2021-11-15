@@ -1,5 +1,6 @@
 @{
     Layout = "_Minimal";
+    ViewData["Title"] = "Acessar";
 }
 @section Styles{
     <link
@@ -22,7 +23,7 @@
                         </div>
                         <p class="login-card-description">Realize o acesso</p>
                         <form action="#!">
-                            <div class="mb-2">
+                            <div class="mb-3">
                                 <label
                                     for="email"
                                     class="form-label visually-hidden"
@@ -32,7 +33,7 @@
                                     name="email"
                                     id="email"
                                     class="form-control"
-                                    placeholder="Endereço de email"
+                                    placeholder="Email"
                                 />
                             </div>
                             <div class="mb-3">
@@ -45,7 +46,7 @@
                                     name="password"
                                     id="password"
                                     class="form-control"
-                                    placeholder="***********"
+                                    placeholder="Senha"
                                 />
                             </div>
                             <div class="d-grid">
@@ -57,7 +58,7 @@
                                     value="Login"
                                 />
                             </div>
-                            <p class="login-card-footer-text text-end">Não possui uma conta? <a href="#!" class="text-decoration-none text-reset">Registre-se aqui</a></p>
+                            <p class="login-card-footer-text text-end">Não possui uma conta? <a asp-action="SignUp" asp-controller="Login" class="text-decoration-none text-reset">Registre-se aqui</a></p>
                         </form>
                         <nav class="login-card-footer-nav">
                             <a href="#!" class="text-decoration-none">Termos de uso.</a>

@@ -1,0 +1,147 @@
+@{
+    Layout = "_Minimal";
+    ViewData["Title"] = "Cadastrar";
+}
+@section Styles{
+    <link
+        rel="stylesheet"
+        href="~/css/login.css"
+    />
+}
+
+<main role="main" class="d-flex align-items-center min-vh-100 py-3">
+    <div class="container">
+        <div class="login-card card rounded-3 shadow-lg overflow-hidden">
+            <div class="row gx-0">
+                <div class="col-md-7 mx-auto">
+                    <div class="card-body">
+                        <div class="brand-wrapper">
+                            <img src="~/img/logo.svg" alt="logo" class="logo">
+                        </div>
+                        <p class="login-card-description">Entre com os dados</p>
+                        <form action="#!">
+                            <div class="">
+                                <fieldset>
+                                    <caption><span class="d-block mb-2">Usuário</span></caption>
+                                    <div class="mb-3">
+                                        <label for="Name" class="form-label visually-hidden">Nome</label>
+                                        <input id="Name" class="form-control" placeholder="Nome" />
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-5">
+                                            <label for="Phone" class="form-label visually-hidden">Telefone</label>
+                                            <input id="Phone" class="form-control" placeholder="Telefone" />
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label
+                                            for="email"
+                                            class="form-label visually-hidden"
+                                        >Email</label>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            id="email"
+                                            class="form-control"
+                                            placeholder="Email"
+                                        />
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label
+                                                for="password"
+                                                class="form-label visually-hidden"
+                                            >Senha</label>
+                                            <input
+                                                type="password"
+                                                name="password"
+                                                id="password"
+                                                class="form-control"
+                                                placeholder="Senha"
+                                            />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label
+                                                for="password_repeat"
+                                                class="form-label visually-hidden"
+                                            >Repetir Senha</label>
+                                            <input
+                                                type="password"
+                                                name="password_repeat"
+                                                id="password_repeat"
+                                                class="form-control"
+                                                placeholder="Repetir Senha"
+                                            />
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset>
+                                    <caption class="mb-2"><span class="d-block mb-2">Endereço</span></caption>
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <label
+                                                for="Address.ZipCode"
+                                                class="form-label visually-hidden"
+                                            >CEP</label>
+                                            <input
+                                                id="Address.ZipCode"
+                                                class="form-control"
+                                                placeholder="CEP"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-9">
+                                            <label for="Address.Street" class="form-label visually-hidden">Logradouro</label>
+                                            <input id="Address.Street" class="form-control" placeholder="Logradouro" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="Address.Number" class="form-label visually-hidden">Número</label>
+                                            <input id="Address.Number" class="form-control" placeholder="Nº" />
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="Address.Complement" class="form-label visually-hidden">Complemento</label>
+                                        <input id="Address.Complement" class="form-control" placeholder="Complemento" />
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-9 mb-3">
+                                            <label for="Address.District" class="form-label visually-hidden">Bairro</label>
+                                            <input id="Address.District" class="form-control" placeholder="Bairro" />
+                                        </div>
+                                        <div class="col-md-9">
+                                            <label for="Address.City" class="form-label visually-hidden">cidade</label>
+                                            <input id="Address.City" class="form-control" placeholder="Cidade" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="Address.State" class="form-label visually-hidden">Estado</label>
+                                            <select id="Address.State" class="form-select">
+                                                <option selected>SP</option>
+                                                <option>RJ</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="d-grid">
+                                <input
+                                    name="login"
+                                    id="login"
+                                    class="btn login-btn mb-4"
+                                    type="button"
+                                    value="Cadastrar"
+                                />
+                            </div>
+                            <p class="login-card-footer-text text-end">Já possui uma conta? <a asp-action="Index" asp-controller="Login" class="text-decoration-none text-reset">Acesse aqui</a></p>
+                        </form>
+                        <nav class="login-card-footer-nav">
+                            <a href="#!" class="text-decoration-none">Termos de uso.</a>
+                            <a class="text-decoration-none" asp-controller="Home" asp-action="Privacy">Política de privacidade</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
