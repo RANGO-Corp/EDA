@@ -1,3 +1,4 @@
+using Alere.Helpers;
 using Alere.Repositories;
 using Alere.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -17,9 +18,34 @@ namespace Alere.Controllers
             _repo = repo;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string error)
         {
+            if (error != null)
+            {
+                TempData["msg"] = error;
+            }
+
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Validate(LoginViewModel loginViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Index");
+            }
+
+            var user = _repo.FindByCondition(c =>
+                c.Email.Equals(loginViewModel.Username) && c.Password.Equals(loginViewModel.Password)
+            );
+            if (user == null)
+            {
+                return RedirectToAction("Index", new { error = "Usuário não existente ou credenciais inválidas." });
+            }
+
+            LoadToSession("user", user);
+            return RedirectToAction("Index", "Food");
         }
 
         public IActionResult Register()
@@ -39,6 +65,7 @@ namespace Alere.Controllers
             _repo.Store(registerViewModel.User);
             _repo.Commit();
 
+            LoadToSession("user", registerViewModel.User);
             return RedirectToAction("Index", "Food");
         }
 
@@ -46,6 +73,11 @@ namespace Alere.Controllers
         public IActionResult Error()
         {
             return View("Error!");
+        }
+
+        public void LoadToSession(string key, object value)
+        {
+            SessionHelper.SetObjectToSession(HttpContext.Session, key, value);
         }
     }
 }

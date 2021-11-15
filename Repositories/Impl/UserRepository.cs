@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Alere.Models;
 using Alere.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +25,16 @@ namespace Alere.Repositories.Impl
         public IList<User> FindAll()
         {
             return _context.Users.ToList();
+        }
+
+        public User FindByCondition(Expression<Func<User, bool>> condition)
+        {
+            return _context
+                        .Users
+                        .Include(u => u.Address)
+                        .Where(condition)
+                        .FirstOrDefault()
+                    ;
         }
 
         public User FindById(long id)
