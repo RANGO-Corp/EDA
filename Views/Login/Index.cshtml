@@ -1,6 +1,6 @@
 @{
     Layout = "_Minimal";
-    ViewData["Title"] = "Acessar";
+    ViewData["Title"] = "Acesso";
 }
 @section Styles{
     <link
@@ -19,7 +19,7 @@
                 <div class="col-md-7">
                     <div class="card-body">
                         <div class="brand-wrapper">
-                            <img src="~/img/logo.svg" alt="logo" class="logo">
+                            <img src="~/img/logo.svg" alt="logo" class="logo" />
                         </div>
                         <p class="login-card-description">Realize o acesso</p>
                         <form action="#!">
@@ -58,7 +58,7 @@
                                     value="Login"
                                 />
                             </div>
-                            <p class="login-card-footer-text text-end">Não possui uma conta? <a asp-action="SignUp" asp-controller="Login" class="text-decoration-none text-reset">Registre-se aqui</a></p>
+                            <p class="login-card-footer-text text-end">Não possui uma conta? <a asp-action="Register" asp-controller="Login" class="text-decoration-none text-reset">Registre-se aqui</a></p>
                         </form>
                         <nav class="login-card-footer-nav">
                             <a href="#!" class="text-decoration-none">Termos de uso.</a>

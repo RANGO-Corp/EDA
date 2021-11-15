@@ -46,6 +46,9 @@ body {
   font-size: 13px;
   font-weight: normal;
 }
+.login-card .form-control.is-invalid {
+  border-color: #dc3545;
+}
 .login-card .form-control::-webkit-input-placeholder,
 .login-card .form-select::-webkit-input-placeholder {
   color: #919aa3;

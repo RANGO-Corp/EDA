@@ -1,3 +1,4 @@
+using Alere.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -17,9 +18,19 @@ namespace Alere.Controllers
             return View();
         }
 
-        public IActionResult SignUp()
+        public IActionResult Register()
         {
             return View();
+        }
+        
+        [HttpPost]
+        public IActionResult Validate(RegisterViewModel registerViewModel)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View("Register");
+            }
+            return RedirectToAction("Index", "Food");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
