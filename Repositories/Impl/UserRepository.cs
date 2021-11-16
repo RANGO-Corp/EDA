@@ -24,7 +24,11 @@ namespace Alere.Repositories.Impl
 
         public IList<User> FindAll()
         {
-            return _context.Users.ToList();
+            return _context
+                        .Users
+                        .Include(u => u.Address)
+                        .ToList()
+                    ;
         }
 
         public User FindByCondition(Expression<Func<User, bool>> condition)

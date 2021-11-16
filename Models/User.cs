@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -25,6 +26,10 @@ namespace Alere.Models
 
         public Address Address { get; set; }
         public long? AddressId { get; set; }
+
+        public string Photo { get; set; }
+
+        public DateTime CreatedAt { get; private set; } = DateTime.Now;
 
         public virtual ICollection<Requisition> OrdersReceived { get; set; }
         public virtual ICollection<Requisition> OrdersPlaced { get; set; }
