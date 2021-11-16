@@ -19,6 +19,12 @@ namespace Alere.Controllers
             _repoUser = repoUser;
         }
 
+        private void LoadUsersSelect()
+        {
+            var users = _repoUser.FindAll();
+            ViewBag.users = new SelectList(users, "UserId", "Name");
+        }
+
         public IActionResult Index()
         {
             var foods = _repo.FindAll();
@@ -28,8 +34,7 @@ namespace Alere.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            var users = _repoUser.FindAll();
-            ViewBag.users = new SelectList(users, "UserId", "Name");
+            LoadUsersSelect();
             return View();
         }
 
@@ -53,9 +58,8 @@ namespace Alere.Controllers
         [HttpGet]
         public IActionResult Update(long id)
         {
-            var users = _repoUser.FindAll();
             var food = _repo.FindById(id);
-            ViewBag.users = new SelectList(users, "UserId", "Name");
+            LoadUsersSelect();
             return View(food);
         }
 
