@@ -22,6 +22,9 @@
     }
     @foreach(var food in Model)
     {
+        var buttonText = user != null && user.UserId == food.UserId.GetValueOrDefault() ? "Detalhes" : "Reservar";
+        var buttonSeverity = user != null && user.UserId != food.UserId.GetValueOrDefault() ? "primary" : "outline-secondary";
+
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
                 <div class="card-header">
@@ -52,25 +55,43 @@
                 </div>
                 <div class="card-footer d-flex justify-content-between align-items-center">
                     <small>@(food.Type.GetAttribute<DisplayAttribute>().Name)</small>
-                    <button
-                        type="button"
-                        class='btn btn-sm btn-@(user != null ? "primary" : "outline-secondary") make-requisition'
-                        data-bs-toggle="modal"
-                        data-bs-target="#requitionFoodModal"
-                        data-food-id="@food.FoodId"
-                        data-food-name="@food.Name"
-                        data-food-has-manufactured-date="@(food.ManufacturedAt.HasValue.ToString().ToLower())"
-                        data-food-manufactured-at="@food.ManufacturedAt?.ToShortDateString()"
-                        data-food-expire-at="@food.ExpireAt.ToShortDateString()"
-                        data-food-is-perishable="@food.IsPerishable.GetValueOrDefault(false).ToString().ToLower()"
-                        data-food-type="@(food.Type.GetAttribute<DisplayAttribute>().Name)"
-                        data-food-description="@food.Description"
-                        data-donor-name="@food.User?.Name"
-                        data-donor-contact="@food.User?.Phone"
-                        data-donor-location="@food.User?.Address?.City"
-                    >
-                        Reservar
-                    </button>
+                    @if(user == null)
+                    {
+                        <button
+                            type="button"
+                            class='btn btn-sm btn-@buttonSeverity make-requisition'
+                            data-bs-toggle="modal"
+                            data-bs-target="#requisitionFoodModal"
+                        >
+                            @buttonText
+                        </button>
+                    }
+                    else
+                    {
+                        <button
+                            type="button"
+                            class='btn btn-sm btn-@buttonSeverity make-requisition'
+                            data-bs-toggle="modal"
+                            data-bs-target="#requisitionFoodModal"
+                            data-food-id="@food.FoodId"
+                            data-food-name="@food.Name"
+                            data-food-has-manufactured-date="@(food.ManufacturedAt.HasValue.ToString().ToLower())"
+                            data-food-manufactured-at="@food.ManufacturedAt?.ToShortDateString()"
+                            data-food-expire-at="@food.ExpireAt.ToShortDateString()"
+                            data-food-is-perishable="@food.IsPerishable.GetValueOrDefault(false).ToString().ToLower()"
+                            data-food-type="@(food.Type.GetAttribute<DisplayAttribute>().Name)"
+                            data-food-description="@food.Description"
+                            data-donor-name="@food.User?.Name"
+                            data-donor-contact="@food.User?.Phone"
+                            data-donor-location="@food.User?.Address?.City"
+                            data-modal-title='@(user != null && user.UserId == food.UserId.GetValueOrDefault() ? "Informações detalhadas" : "Solicitar reserva do alimento")'
+                            data-modal-donor-text='@(user != null && user.UserId == food.UserId.GetValueOrDefault() ? "Suas informações" : "Informações sobre o doador")'
+                            data-modal-close-text='@(user != null && user.UserId == food.UserId.GetValueOrDefault() ? "Fechar" : "Cancelar")'
+                            data-modal-is-minimal='@((user != null && user.UserId == food.UserId.GetValueOrDefault()).ToString().ToLower())'
+                        >
+                            @buttonText
+                        </button>
+                    }
                 </div>
             </div>
         </div>
@@ -79,46 +100,9 @@
 
 <partial name='@(user != null ? "_RequisitionModal" : "_UserNotLoggedModal")' />
 
-@section Scripts {
-    <script>
-        $(document).ready(function() {
-            $(".make-requisition").click(function() {
-                const element = this;
-
-                // Food data
-                const foodId = $(element).data("food-id");
-                const foodName = $(element).data("food-name");
-                const foodHasManufacturedDate = ($(element).data("food-has-manufactured-date") === true);
-                const foodManufacturedAt = $(element).data("food-manufactured-at");
-                const foodExpireAt = $(element).data("food-expire-at");
-                const foodIsPerishable = ($(element).data("food-is-perishable") === true);
-                const foodType = $(element).data("food-type");
-                const foodDescription = $(element).data("food-description");
-
-                $(".modalFoodItem_Id").val(parseInt(foodId));
-                $(".modalFoodItem_Name").text(foodName);
-                $(".modalFoodItem_ExpireAt").text(foodExpireAt);
-                $(".modalFoodItem_IsPerishable").text(foodIsPerishable ? "Sim" : "Não");
-                $(".modalFoodItem_Type").text(foodType);
-                $(".modalFoodItem_Description").text(foodDescription);
-
-                // Donor data
-                const donorName = $(element).data("donor-name");
-                const donorContact = $(element).data("donor-contact");
-                const donorLocation = $(element).data("donor-location");
-
-                $(".modalDonorItem_Name").text(donorName);
-                $(".modalDonorItem_Contact").text(donorContact);
-                $(".modalDonorItem_Location").text(donorLocation);
-
-                if(!foodHasManufacturedDate) {
-                    $("#modalFoodItem_HasManufacturetDate").addClass("d-none");
-                    return;
-                }
-
-                $(".modalFoodItem_ManufacturetAt").text(foodManufacturedAt);
-                $("#modalFoodItem_HasManufacturetDate").removeClass("d-none");
-            });
-        });
-    </script>
+@if(user != null)
+{
+    @section Scripts {
+        <script src="~/js/dist/food.reservation.prod.js" asp-append-version="true"></script>
+    }
 }
