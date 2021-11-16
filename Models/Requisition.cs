@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Alere.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Alere.Models
@@ -32,8 +33,8 @@ namespace Alere.Models
 
     public enum Status
     {
-        [Display(Name = "Aprovado")] APPROVED,
-        [Display(Name = "Aguardando")] AWAITING,
-        [Display(Name = "Recusado")] REFUSED
+        [Display(Name = "Aprovado"), Style(Severity = "success")] APPROVED,
+        [Display(Name = "Aguardando"), Style(Severity = "warning")] AWAITING,
+        [Display(Name = "Recusado"), Style(Severity = "danger")] REFUSED
     }
 }

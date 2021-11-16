@@ -91,6 +91,9 @@ namespace Alere.Controllers
                 return RedirectToAction("Index", "Login", new { error = "Tempo de sessão expirado. Realize o acesso novamente." });
             }
 
+            requisition.Receiver = sessionUser;
+            requisition.ReceiverId = sessionUser.UserId;
+
             return RedirectToAction("Create", "Requisition", new { requisition = requisition });
         }
 
