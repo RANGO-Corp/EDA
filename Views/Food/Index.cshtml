@@ -39,13 +39,51 @@
                     >
                         Perecível
                     </span>
-                    <a href="#" class="">
-                        <img
-                            class="card-img-top" 
-                            alt="Alimento: @food.Name" 
-                            src='@(food.UrlImage != null ? food.UrlImage : "https://dummyimage.com/700x350/dee2e6/6c757d.jpg")'
-                        />
-                    </a>
+                    @if(user == null)
+                    {
+                        <button
+                            type="button"
+                            class="btn btn-link make-requisition"
+                            data-bs-toggle="modal"
+                            data-bs-target="#requisitionFoodModal"
+                        >
+                            <img
+                                class="card-img-top" 
+                                alt="Alimento: @food.Name" 
+                                src='@food.UrlImage'
+                            />
+                        </button>
+                    }
+                    else
+                    {
+                        <button
+                            type="button"
+                            class="btn btn-link make-requisition"
+                            data-bs-toggle="modal"
+                            data-bs-target="#requisitionFoodModal"
+                            data-food-id="@food.FoodId"
+                            data-food-name="@food.Name"
+                            data-food-has-manufactured-date="@(food.ManufacturedAt.HasValue.ToString().ToLower())"
+                            data-food-manufactured-at="@food.ManufacturedAt?.ToShortDateString()"
+                            data-food-expire-at="@food.ExpireAt.ToShortDateString()"
+                            data-food-is-perishable="@food.IsPerishable.GetValueOrDefault(false).ToString().ToLower()"
+                            data-food-type="@(food.Type.GetAttribute<DisplayAttribute>().Name)"
+                            data-food-description="@food.Description"
+                            data-donor-name="@food.User?.Name"
+                            data-donor-contact="@food.User?.Phone"
+                            data-donor-location="@food.User?.Address?.City"
+                            data-modal-title='@(user != null && user.UserId == food.UserId.GetValueOrDefault() ? "Informações detalhadas" : "Solicitar reserva do alimento")'
+                            data-modal-donor-text='@(user != null && user.UserId == food.UserId.GetValueOrDefault() ? "Suas informações" : "Informações sobre o doador")'
+                            data-modal-close-text='@(user != null && user.UserId == food.UserId.GetValueOrDefault() ? "Fechar" : "Cancelar")'
+                            data-modal-is-minimal='@((user != null && user.UserId == food.UserId.GetValueOrDefault()).ToString().ToLower())'
+                        >
+                            <img
+                                class="card-img-top" 
+                                alt="Alimento: @food.Name" 
+                                src='@food.UrlImage'
+                            />
+                        </button>
+                    }
                 </div>
                 <div class="card-body">
                     <small class="text-muted">

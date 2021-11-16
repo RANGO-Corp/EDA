@@ -36,6 +36,12 @@ namespace Alere.Controllers
         [HttpPost]
         public IActionResult Create(Food food)
         {
+            // Setted EMPTY instead of WHITESPACE to permits tests without require image
+            if (string.IsNullOrEmpty(food.UrlImage))
+            {
+                food.UrlImage = "https://dummyimage.com/700x350/dee2e6/6c757d.jpg";
+            }
+
             _repo.Store(food);
             _repo.Commit();
 
@@ -56,6 +62,12 @@ namespace Alere.Controllers
         [HttpPost]
         public IActionResult Update(Food food)
         {
+            // Setted EMPTY instead of WHITESPACE to permits tests without require image
+            if (string.IsNullOrEmpty(food.UrlImage))
+            {
+                food.UrlImage = "https://dummyimage.com/700x350/dee2e6/6c757d.jpg";
+            }
+
             _repo.Update(food);
             _repo.Commit();
 
