@@ -3,55 +3,117 @@
 <div class="mb-3">
     <input asp-for="UserId" />
     <fieldset>
-        <caption>Usuário</caption>
+        <caption>
+            <span class="d-block mb-2">Usuário</span>
+        </caption>
+
         <div>
             <div class="form-floating mb-2">
                 <input asp-for="Name" class="form-control" />
-                <label asp-for="Name"></label>
+                <label asp-for="Name" class="form-label"></label>
             </div>
-            <div class="form-floating mb-2">
-                <input asp-for="Phone" class="form-control" />
-                <label asp-for="Phone"></label>
+            <div class="row mb-2">
+                <div class="col-lg-3">
+                    <div class="form-floating">
+                        <input
+                            asp-for="Phone"
+                            class="form-control mb-2 mb-lg-0"
+                            id="user_phone"
+                        />
+                        <label asp-for="Phone"></label>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="form-floating">
+                        <input asp-for="Email" class="form-control" />
+                        <label asp-for="Email"></label>
+                    </div>
+                </div>
             </div>
-            <div class="form-floating mb-2">
-                <input asp-for="Email" class="form-control" />
-                <label asp-for="Email"></label>
-            </div>
+
             <div class="form-floating mb-2">
                 <input asp-for="Password" class="form-control" />
                 <label asp-for="Password"></label>
             </div>
         </div>
     </fieldset>
+
     <fieldset>
-        <caption>Endereço</caption>
-        <div class="form-floating mb-2">
-            <input asp-for="Address.Street" class="form-control" />
-            <label asp-for="Address.Street"></label>
+        <caption>
+            <span class="d-block mb-2">Endereço</span>
+        </caption>
+
+        <div>
+            <div class="row mb-2">
+                <div class="col-lg-3">
+                    <div class="form-floating">
+                        <input
+                            asp-for="Address.ZipCode"
+                            class="form-control"
+                            data-mask="00.000-000"
+                        />
+                        <label asp-for="Address.ZipCode"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="form-floating">
+                        <input
+                            asp-for="Address.Street"
+                            class="form-control mb-2 mb-lg-0"
+                        />
+                        <label asp-for="Address.Street"></label>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="form-floating">
+                        <input asp-for="Address.Number" class="form-control" />
+                        <label asp-for="Address.Number"></label>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-floating mb-2">
-            <input asp-for="Address.Number" class="form-control" />
-            <label asp-for="Address.Number"></label>
-        </div>
-        <div class="form-floating mb-2">
-            <input asp-for="Address.City" class="form-control" />
-            <label asp-for="Address.City"></label>
-        </div>
-        <div class="form-floating mb-2">
-            <input asp-for="Address.District" class="form-control" />
-            <label asp-for="Address.District"></label>
-        </div>
-        <div class="form-floating mb-2">
-            <select asp-for="Address.State" asp-items="Html.GetEnumSelectList<State>()" class="form-select"></select>
-            <label asp-for="Address.State"></label>
-        </div>
-        <div class="form-floating mb-2">
-            <input asp-for="Address.ZipCode" class="form-control" />
-            <label asp-for="Address.ZipCode"></label>
-        </div>
+
         <div class="form-floating mb-2">
             <input asp-for="Address.Complement" class="form-control" />
             <label asp-for="Address.Complement"></label>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-lg-4">
+                <div class="form-floating">
+                    <input
+                        asp-for="Address.City"
+                        class="form-control mb-2 mb-lg-0"
+                    />
+                    <label asp-for="Address.City"></label>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="form-floating">
+                    <input
+                        asp-for="Address.District"
+                        class="form-control mb-2 mb-lg-0"
+                    />
+                    <label asp-for="Address.District"></label>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="form-floating">
+                    <select
+                        asp-for="Address.State"
+                        asp-items="Html.GetEnumSelectList<State>()"
+                        class="form-select"
+                    ></select>
+                    <label asp-for="Address.State"></label>
+                </div>
+            </div>
         </div>
     </fieldset>
 </div>

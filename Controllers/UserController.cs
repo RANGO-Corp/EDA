@@ -25,23 +25,6 @@ namespace Alere.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Create(User user)
-        {
-            _repo.Store(user);
-            _repo.Commit();
-
-            TempData["msg"] = $"Usuário {user.Name} cadastrado com sucesso!";
-
-            return RedirectToAction("Index");
-        }
-
-        [HttpGet]
         public IActionResult Profile(long id)
         {
             var user = _repo.FindById(id);

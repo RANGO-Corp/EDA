@@ -1,6 +1,18 @@
 @{
     ViewData["Title"] = "Perfil";
 }
+@section Scripts{
+    <script src="~/lib/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+    <script>
+        let maskBehavior = (val) => val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+        let maskOptions = {
+            onKeyPress: function(val, e, field, options) {
+                field.mask(maskBehavior.apply({}, arguments), options);
+            }
+        };
+        $('#user_phone').mask(maskBehavior, maskOptions);
+    </script>
+}
 
 <form asp-action="Profile">
     <partial name="_Form" />
