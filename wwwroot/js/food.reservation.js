@@ -38,10 +38,12 @@ $(document).ready(function() {
         const donorName = $(element).data("donor-name");
         const donorContact = $(element).data("donor-contact");
         const donorLocation = $(element).data("donor-location");
+        const donorId = $(element).data("donor-id");
 
         $(".modalDonorItem_Name").text(donorName);
         $(".modalDonorItem_Contact").text(donorContact);
         $(".modalDonorItem_Location").text(donorLocation);
+        $(".modalDonorItem_Id").val(parseInt(donorId));
 
         if(!foodHasManufacturedDate) {
             $("#modalFoodItem_HasManufacturedDate").addClass("d-none");

@@ -14,11 +14,11 @@ namespace Alere.Models
         public DateTime Date { get; set; } = DateTime.Now;
         public Status Status { get; set; } = Status.AWAITING;
         public string Message { get; set; }
-        
+
         // N : 1
         [ForeignKey("User")]
-        public long FromUserId { get; set; }
-        public User FromUser { get; set; }
+        public long DonorId { get; set; }
+        public User Donor { get; set; }
 
         // N : 1
         public long FoodId { get; set; }
