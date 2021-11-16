@@ -1,3 +1,4 @@
+using Alere.Helpers;
 using Alere.Models;
 using Alere.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -78,6 +79,19 @@ namespace Alere.Controllers
             TempData["msg"] = $"Alimento {food.Name} atualizado";
 
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Requisition(Requisition requisition)
+        {
+            var sessionUser = SessionHelper.GetObjectFromSession<User>(HttpContext.Session, SessionKeys.USER_KEY.ToString());
+
+            if (sessionUser == null)
+            {
+                return RedirectToAction("Index", "Login", new { error = "Tempo de sessão expirado. Realize o acesso novamente." });
+            }
+
+            return RedirectToAction("Index", "Requisition");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -2,6 +2,19 @@
     ViewData["Title"] = "Solicitações";
 }
 
+<div class="card mb-3">
+    <div class="card-body d-flex align-items-center flex-column text-center">
+        Você não possui nenhuma solicitação ativa no momento.
+        <a
+            asp-controller="Food"
+            asp-action="Index"
+            class="btn btn-link"
+        >
+            Que tal conferir os alimentos disponíveis?
+        </a>
+    </div>
+</div>
+
 <div class="card-deck">
 
     <div class="card mb-3">
@@ -84,7 +97,6 @@
                             <span class="badge bg-danger ms-1">Recusado</span>
                         </div>
                     </h5>
-                    <p class="card-text">Oi.</p>
                     <p class="card-text"><small class="text-muted">Solicitação por: Alguém Anônimo</small></p>
                 </div>
             </div>
