@@ -1,0 +1,1 @@
+"use strict";$(document).ready(function(){$(".make-requisition").click(function(){var t=$(this).data("modalActionText");$("#requisitionFoodModalTextAction").text(t)})});

@@ -92,7 +92,7 @@
                                             <label asp-for="User.Address.Street" class="form-label visually-hidden"></label>
                                             <input asp-for="User.Address.Street" class="form-control" placeholder="Logradouro" />
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3 mt-3 mt-md-0">
                                             <label asp-for="User.Address.Number" class="form-label visually-hidden"></label>
                                             <input asp-for="User.Address.Number" class="form-control" placeholder="Nº" />
                                         </div>
@@ -115,7 +115,7 @@
                                             <select
                                                 asp-for="User.Address.State"
                                                 asp-items="Html.GetEnumSelectList<State>()"
-                                                class="form-select"
+                                                class="form-select mt-3 mt-md-0"
                                             ></select>
                                         </div>
                                     </div>
