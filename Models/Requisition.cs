@@ -17,16 +17,16 @@ namespace Alere.Models
 
         // N : 1
         [ForeignKey("User")]
-        public long DonorId { get; set; }
+        public long? DonorId { get; set; }
         public User Donor { get; set; }
 
         // N : 1
-        public long FoodId { get; set; }
+        public long? FoodId { get; set; }
         public Food Food { get; set; }
 
         // N : 1
         [ForeignKey("User")]
-        public long ReceiverId { get; set; }
+        public long? ReceiverId { get; set; }
         public User Receiver { get; set; }
     }
 

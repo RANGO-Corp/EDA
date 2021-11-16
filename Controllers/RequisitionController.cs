@@ -1,3 +1,5 @@
+using Alere.Helpers;
+using Alere.Models;
 using Alere.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -18,7 +20,19 @@ namespace Alere.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var sessionUser = SessionHelper.GetObjectFromSession<User>(HttpContext.Session, SessionKeys.USER_KEY.ToString());
+            var requisitions = _repo.FindAll();
+            return View(requisitions);
+        }
+
+        public IActionResult Create(Requisition requisition)
+        {
+            _repo.Store(requisition);
+            _repo.Commit();
+
+            TempData["msg"] = "Solicitação criada com sucesso";
+
+            return RedirectToAction("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

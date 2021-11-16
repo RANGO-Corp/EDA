@@ -110,16 +110,16 @@ namespace Alere.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("Requisition_Date");
 
-                    b.Property<long>("DonorId")
+                    b.Property<long?>("DonorId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("FoodId")
+                    b.Property<long?>("FoodId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Message")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("ReceiverId")
+                    b.Property<long?>("ReceiverId")
                         .HasColumnType("bigint");
 
                     b.Property<int>("Status")
@@ -178,22 +178,16 @@ namespace Alere.Migrations
             modelBuilder.Entity("Alere.Models.Requisition", b =>
                 {
                     b.HasOne("Alere.Models.User", "Donor")
-                        .WithMany()
-                        .HasForeignKey("DonorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("OrdersReceived")
+                        .HasForeignKey("DonorId");
 
                     b.HasOne("Alere.Models.Food", "Food")
                         .WithMany()
-                        .HasForeignKey("FoodId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("FoodId");
 
                     b.HasOne("Alere.Models.User", "Receiver")
-                        .WithMany()
-                        .HasForeignKey("ReceiverId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("OrdersPlaced")
+                        .HasForeignKey("ReceiverId");
 
                     b.Navigation("Donor");
 
@@ -209,6 +203,13 @@ namespace Alere.Migrations
                         .HasForeignKey("AddressId");
 
                     b.Navigation("Address");
+                });
+
+            modelBuilder.Entity("Alere.Models.User", b =>
+                {
+                    b.Navigation("OrdersPlaced");
+
+                    b.Navigation("OrdersReceived");
                 });
 #pragma warning restore 612, 618
         }

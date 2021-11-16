@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc;
@@ -24,5 +25,8 @@ namespace Alere.Models
 
         public Address Address { get; set; }
         public long? AddressId { get; set; }
+
+        public virtual ICollection<Requisition> OrdersReceived { get; set; }
+        public virtual ICollection<Requisition> OrdersPlaced { get; set; }
     }
 }
