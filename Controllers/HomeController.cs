@@ -75,6 +75,12 @@ namespace Alere.Controllers
             }
             // GET Password from view and SET into User
             registerViewModel.User.Password = registerViewModel.Password;
+
+            if(string.IsNullOrEmpty(registerViewModel.User.Photo))
+            {
+                registerViewModel.User.Photo = "/img/avatar.svg";
+            }
+
             _repoUser.Store(registerViewModel.User);
             _repoUser.Commit();
 
@@ -97,8 +103,9 @@ namespace Alere.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { 
-                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier 
+            return View(new ErrorViewModel
+            {
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
             });
         }
 
