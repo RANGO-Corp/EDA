@@ -16,12 +16,77 @@
 
         <div class="d-inline-flex order-sm-1 align-items-center">
             <a
-                class='btn btn-@(user != null ? "outline-danger" : "primary") me-sm-0 me-4'
+                condition="!hasUser"
+                class="btn btn-primary me-3 me-sm-0"
                 asp-controller="Login"
-                asp-action='@(user != null ? "Logout" : "Index")'
+                asp-action="Index"
             >
-                @(user != null ? "Sair" : "Acessar")
+                Acessar
             </a>
+
+            <div
+                condition="@hasUser"
+                class="dropdown ms-3"
+            >
+                <button
+                    type="button"
+                    id="userDropdownMenuActions"
+                    class="nav-link dropdown-toggle img-wrapper p-0"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                >
+                    <img
+                        src="@user.Photo"
+                        class="img-fluid"
+                        alt="Avatar de @user.Name"
+                    />
+                </button>
+                <ul
+                    class="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="userDropdownMenuActions"
+                >
+                    <li class="d-sm-none">
+                        <a
+                            class="dropdown-item"
+                            asp-controller="User"
+                            asp-action="Index"
+                        >Usuários</a>
+                    </li>
+                    <li class="d-sm-none">
+                        <a
+                            class="dropdown-item"
+                            asp-controller="Food"
+                            asp-action="Index"
+                        >Doações</a>
+                    </li>
+                    <hr class="dropdown-divider d-sm-none" />
+                    <li>
+                        <a
+                            class="dropdown-item"
+                            asp-controller="Requisition"
+                            asp-action="Index"
+                        >
+                            Solicitações
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            class="dropdown-item"
+                            asp-controller="User"
+                            asp-action="Profile"
+                            asp-route-id="@user.UserId"
+                        >Perfil</a>
+                    </li>
+                    <hr class="dropdown-divider" />
+                    <li>
+                        <a
+                            class="dropdown-item"
+                            asp-controller="Login"
+                            asp-action="Logout"
+                        >Sair</a>
+                    </li>
+                </ul>
+            </div>
 
             <button
                 condition="!hasUser"
