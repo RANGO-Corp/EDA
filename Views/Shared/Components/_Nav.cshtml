@@ -18,8 +18,8 @@
             <a
                 condition="!hasUser"
                 class="btn btn-primary me-3 me-sm-0"
-                asp-controller="Login"
-                asp-action="Index"
+                asp-controller="Home"
+                asp-action="Login"
             >
                 Acessar
             </a>
@@ -81,7 +81,7 @@
                     <li>
                         <a
                             class="dropdown-item"
-                            asp-controller="Login"
+                            asp-controller="Home"
                             asp-action="Logout"
                         >Sair</a>
                     </li>
@@ -102,13 +102,23 @@
             </button>
         </div>
 
-        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+        <div
+            class="navbar-collapse collapse d-sm-inline-flex justify-content-between"
+        >
             <ul class="navbar-nav flex-grow-1">
                 <li class="nav-item">
-                    <a class="nav-link text-dark" asp-controller="User" asp-action="Index">Usuários</a>
+                    <a
+                        class="nav-link text-dark"
+                        asp-controller="User"
+                        asp-action="Index"
+                    >Usuários</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" asp-controller="Food" asp-action="Index">Doações</a>
+                    <a
+                        class="nav-link text-dark"
+                        asp-controller="Food"
+                        asp-action="Index"
+                    >Doações</a>
                 </li>
             </ul>
         </div>

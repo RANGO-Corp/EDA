@@ -1,7 +1,7 @@
 @model LoginViewModel
 @{
     Layout = "_Minimal";
-    ViewData["Title"] = "Acesso";
+    ViewData["Title"] = "Acessar";
 }
 @section Styles{
     <link
@@ -16,15 +16,29 @@
         <div class="login-card card rounded-3 shadow-lg overflow-hidden">
             <div class="row gx-0">
                 <div class="col-md-5 position-relative login-card-img-wrapper">
-                    <img src="~/img/donation.svg" alt="login" class="login-card-img" />
+                    <img
+                        src="~/img/donation.svg"
+                        alt="Ilustração de um doação de alimentos"
+                        class="login-card-img"
+                    />
                 </div>
+
                 <div class="col-md-7">
                     <div class="card-body">
                         <div class="brand-wrapper">
-                            <img src="~/img/logo.svg" alt="logo" class="logo" />
+                            <img
+                                src="~/img/logo.svg"
+                                alt='@ViewData["siteName"] logo'
+                                class="logo"
+                            />
                         </div>
                         <p class="login-card-description">Realize o acesso</p>
-                        <form asp-action="validate">
+
+                        <form
+                            asp-action="Login"
+                            asp-controller="Home"
+                            method="post"
+                        >
                             <div class="mb-3">
                                 <label
                                     asp-for="Username"
@@ -35,8 +49,12 @@
                                     class="form-control"
                                     placeholder="Email"
                                 />
-                                <span asp-validation-for="Username" class="d-block text-danger mt-2"></span>
+                                <span
+                                    asp-validation-for="Username"
+                                    class="d-block text-danger mt-2"
+                                ></span>
                             </div>
+
                             <div class="mb-3">
                                 <label
                                     asp-for="Password"
@@ -47,17 +65,30 @@
                                     class="form-control"
                                     placeholder="Senha"
                                 />
-                                <span asp-validation-for="Password" class="d-block text-danger mt-2"></span>
+                                <span
+                                    asp-validation-for="Password"
+                                    class="d-block text-danger mt-2"
+                                ></span>
                             </div>
+
                             <div class="d-grid">
-                                <input type="submit" class="btn login-btn mb-4" value="Acessar" />
+                                <input
+                                    type="submit"
+                                    class="btn login-btn mb-4"
+                                    value="Acessar"
+                                />
                             </div>
-                            <p class="login-card-footer-text text-end">Não possui uma conta? <a asp-action="Register" asp-controller="Login" class="text-decoration-none text-reset">Registre-se aqui</a></p>
+                            <p class="login-card-footer-text text-end">
+                                Não possui uma conta?
+                                <a
+                                    asp-action="Register"
+                                    asp-controller="Home"
+                                    class="text-decoration-none text-reset"
+                                >Registre-se aqui</a>
+                            </p>
                         </form>
-                        <nav class="login-card-footer-nav">
-                            <a href="#!" class="text-decoration-none">Termos de uso.</a>
-                            <a class="text-decoration-none" asp-controller="Home" asp-action="Privacy">Política de privacidade</a>
-                        </nav>
+
+                        <partial name="_AuthFooter" />
                     </div>
                 </div>
             </div>
