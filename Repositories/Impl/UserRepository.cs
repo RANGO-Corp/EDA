@@ -60,6 +60,9 @@ namespace Alere.Repositories.Impl
         public void Update(User entity)
         {
             _context.Users.Update(entity);
+
+            // Prevents property state from being modified
+            _context.Entry(entity).Property(p => p.CreatedAt).IsModified = false;
         }
     }
 }
