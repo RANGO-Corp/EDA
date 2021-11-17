@@ -1,17 +1,9 @@
 @{
     ViewData["Title"] = "Nova doação";
 }
-<form asp-action="create">
 
+<form asp-action="create">
     <partial name="_Form" />
 
-    <div class="d-flex justify-content-end">
-        <div class="btn-group">
-            <a asp-action="index" asp-controller="food">Principal</a>
-            <button type="submit">
-                <span>Cadastrar</span>
-            </button>
-        </div>
-    </div>
-
+    <partial name="Components/_FormActionButton" />
 </form>
