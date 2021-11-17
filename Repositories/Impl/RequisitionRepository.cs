@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Alere.Models;
 using Alere.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Alere.Repositories.Impl
 {
@@ -22,6 +25,18 @@ namespace Alere.Repositories.Impl
         public IList<Requisition> FindAll()
         {
             return _context.Requisitions.ToList();
+        }
+
+        public IList<Requisition> FindAllByCondition(Expression<Func<Requisition, bool>> condition)
+        {
+            return _context
+                        .Requisitions
+                        .Include(e => e.Receiver)
+                        .Include(e => e.Food)
+                        .Where(condition)
+                        .OrderByDescending(e => e.Date)
+                    .ToList()
+                    ;
         }
 
         public Requisition FindById(long id)

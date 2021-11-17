@@ -99,13 +99,15 @@ body {
     max-width: 25%;
   }
 }
-.user-list .img-wrapper {
+.user-list .img-wrapper,
+.request-list .img-wrapper {
   width: 100px;
   border-radius: 50%;
   overflow: hidden;
   border: 1px solid #d5dae2;
 }
-.user-list img {
+.user-list img,
+.request-list img {
   object-fit: cover;
   width: 100%;
   background-color: #E5E5E5;

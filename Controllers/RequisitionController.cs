@@ -21,7 +21,13 @@ namespace Alere.Controllers
         public IActionResult Index()
         {
             var sessionUser = SessionHelper.GetObjectFromSession<User>(HttpContext.Session, SessionKeys.USER_KEY.ToString());
-            var requisitions = _repo.FindAll();
+
+            if (sessionUser == null)
+            {
+                return RedirectToAction("Index", "Login", new { error = "Tempo de sessão expirado. Realize o acesso novamente." });
+            }
+
+            var requisitions = _repo.FindAllByCondition(c => c.DonorId == sessionUser.UserId);
             return View(requisitions);
         }
 
