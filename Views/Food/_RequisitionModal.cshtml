@@ -31,15 +31,15 @@
                         <span class="input-group-text">Para</span>
                         <span class="form-control modalDonorItem_Name"></span>
                     </div>
-                    <div class="form-floating mb-2" data-alere-dynamic-display="true">
+
+                    <div class="mb-2" data-alere-dynamic-display="true">
+                        <label asp-for="Message">Mensagem</label>
                         <textarea
                             class="form-control"
                             placeholder="Digite uma mensagem para o doador"
-                            id="requisitionMessage"
                             asp-for="Message"
                             style="min-height: 100px"
                         ></textarea>
-                        <label for="requisitionMessage">Mensagem</label>
                     </div>
 
                     <div class="accordion" id="accordionModalData_FoodDonor">
@@ -56,6 +56,7 @@
                                     Informações sobre o alimento
                                 </button>
                             </h2>
+
                             <div
                                 id="modalAboutFoodSection"
                                 class="accordion-collapse collapse"
@@ -109,6 +110,7 @@
                                     Informações sobre o doador
                                 </button>
                             </h2>
+
                             <div
                                 id="modalAboutDonorSection"
                                 class="accordion-collapse collapse"
