@@ -1,6 +1,7 @@
 using Alere.Helpers;
 using Alere.Models;
 using Alere.Repositories;
+using Alere.TagHelpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -47,6 +48,7 @@ namespace Alere.Controllers
             _repo.Commit();
 
             TempData["msg"] = "Solicitação criada com sucesso";
+            TempData["severity"] = Severity.success;
 
             return RedirectToAction("Index");
         }

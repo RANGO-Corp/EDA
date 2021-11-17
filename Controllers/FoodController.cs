@@ -49,7 +49,7 @@ namespace Alere.Controllers
             // Setted EMPTY instead of WHITESPACE to permits tests without require image
             if (string.IsNullOrEmpty(food.UrlImage))
             {
-                food.UrlImage = "https://dummyimage.com/700x350/dee2e6/6c757d.jpg";
+                food.UrlImage = "/img/food-sample.jpg";
             }
 
             _repo.Store(food);
@@ -74,7 +74,7 @@ namespace Alere.Controllers
             // Setted EMPTY instead of WHITESPACE to permits tests without require image
             if (string.IsNullOrEmpty(food.UrlImage))
             {
-                food.UrlImage = "https://dummyimage.com/700x350/dee2e6/6c757d.jpg";
+                food.UrlImage = "/img/food-sample.jpg";
             }
 
             _repo.Update(food);

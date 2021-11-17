@@ -2,6 +2,7 @@
 using Alere.Helpers;
 using Alere.Models;
 using Alere.Repositories;
+using Alere.TagHelpers;
 using Alere.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -31,6 +32,7 @@ namespace Alere.Controllers
             if (error != null)
             {
                 TempData["msg"] = error;
+                TempData["severity"] = Severity.danger;
             }
 
             return View();

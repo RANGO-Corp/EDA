@@ -1,7 +1,24 @@
+@{
+    var message = TempData["msg"] as string;
+    Severity severity = Severity.info;
+
+    object tempDataItemValue;
+    bool hasSeverity = TempData.TryGetValue("severity", out tempDataItemValue);
+
+    if (hasSeverity)
+    {
+        severity = (Severity)tempDataItemValue;
+    }
+}
+
 <div
-    condition='@TempData["msg"] != null'
+    condition='@(!string.IsNullOrWhiteSpace(message))'
     class="position-fixed top-0 end-0 p-3 mt-5 w-100 mw-toast" 
     style="z-index: 11"
 >
-    <alert message='@TempData["msg"]' severity="danger" dismissible="true"></alert>
+    <alert
+        message='@message'
+        severity='@severity'
+        dismissible="true"
+    ></alert>
 </div>
