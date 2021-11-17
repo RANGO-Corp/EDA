@@ -27,6 +27,7 @@ namespace Alere.Repositories.Impl
             return _context
                         .Users
                         .Include(u => u.Address)
+                        .Include(e => e.Foods)
                         .ToList()
                     ;
         }

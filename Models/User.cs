@@ -33,5 +33,8 @@ namespace Alere.Models
 
         public virtual ICollection<Requisition> OrdersReceived { get; set; }
         public virtual ICollection<Requisition> OrdersPlaced { get; set; }
+        
+        // 1 : N
+        public virtual ICollection<Food> Foods { get; set; }
     }
 }
