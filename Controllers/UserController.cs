@@ -1,3 +1,4 @@
+using Alere.Helpers;
 using Alere.Models;
 using Alere.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -35,8 +36,17 @@ namespace Alere.Controllers
         [HttpPost]
         public IActionResult Profile(User user)
         {
+            if (string.IsNullOrWhiteSpace(user.Password))
+            {
+                user.Password = SessionHelper
+                    .GetObjectFromSession<User>(HttpContext.Session, SessionKeys.USER_KEY.ToString())
+                    .Password;
+            }
+
             _repo.Update(user);
             _repo.Commit();
+
+            SessionHelper.SetObjectToSession(HttpContext.Session, SessionKeys.USER_KEY.ToString(), user);
 
             return RedirectToAction("Profile");
         }
