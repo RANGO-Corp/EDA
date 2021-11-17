@@ -110,3 +110,14 @@ body {
   width: 100%;
   background-color: #E5E5E5;
 }
+.img-wrapper {
+  width: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid #d5dae2;
+}
+.img-wrapper img {
+  object-fit: cover;
+  width: 100%;
+  background-color: #E5E5E5;
+}
