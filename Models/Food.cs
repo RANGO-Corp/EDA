@@ -25,9 +25,11 @@ namespace Alere.Models
         public bool? IsPerishable { get; set; }
 
         [Display(Name = "Data de Fabricação"), DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? ManufacturedAt { get; set; }
 
         [Display(Name = "Data de Validade"), DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime ExpireAt { get; set; }
 
         [Display(Name = "Imagem")]
