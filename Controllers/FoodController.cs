@@ -1,6 +1,6 @@
-using Alere.Helpers;
 using Alere.Models;
 using Alere.Repositories;
+using Alere.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
@@ -28,8 +28,12 @@ namespace Alere.Controllers
 
         public IActionResult Index()
         {
-            var foods = _repo.FindAll();
-            return View(foods);
+            FoodViewModel viewModel = new FoodViewModel()
+            {
+                Foods = _repo.FindAll()
+            };
+
+            return View(viewModel);
         }
 
         [HttpGet]
@@ -79,22 +83,6 @@ namespace Alere.Controllers
             TempData["msg"] = $"Alimento {food.Name} atualizado";
 
             return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        public IActionResult Requisition(Requisition requisition)
-        {
-            var sessionUser = SessionHelper.GetObjectFromSession<User>(HttpContext.Session, SessionKeys.USER_KEY.ToString());
-
-            if (sessionUser == null)
-            {
-                return RedirectToAction("Index", "Login", new { error = "Tempo de sessão expirado. Realize o acesso novamente." });
-            }
-
-            requisition.Receiver = sessionUser;
-            requisition.ReceiverId = sessionUser.UserId;
-
-            return RedirectToAction("Create", "Requisition", new { requisition = requisition });
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -1,7 +1,10 @@
 @{
     var user = SessionHelper.GetObjectFromSession<User>(Context.Session, SessionKeys.USER_KEY.ToString());
+    var hasUser = user != null;
 }
-<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+<nav
+    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+>
     <div class="container">
         <a class="navbar-brand" asp-controller="Home" asp-action="Index">
             <img
@@ -11,7 +14,7 @@
             />
         </a>
 
-        <div class="d-inline-flex order-sm-1">
+        <div class="d-inline-flex order-sm-1 align-items-center">
             <a
                 class='btn btn-@(user != null ? "outline-danger" : "primary") me-sm-0 me-4'
                 asp-controller="Login"
@@ -19,13 +22,15 @@
             >
                 @(user != null ? "Sair" : "Acessar")
             </a>
-            <button 
-                class="navbar-toggler" 
-                type="button" 
-                data-bs-toggle="collapse" 
-                data-bs-target=".navbar-collapse" 
+
+            <button
+                condition="!hasUser"
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target=".navbar-collapse"
                 aria-controls="navbarSupportedContent"
-                aria-expanded="false" 
+                aria-expanded="false"
                 aria-label="Toggle navigation"
             >
                 <span class="navbar-toggler-icon"></span>

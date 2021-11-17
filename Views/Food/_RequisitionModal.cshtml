@@ -1,3 +1,4 @@
+@model Requisition
 <div
     class="modal fade"
     id="requisitionFoodModal"
@@ -13,9 +14,17 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form asp-action="Requisition" asp-controller="Food">
-                <input type="hidden" name="FoodId" class="modalFoodItem_Id" />
-                <input type="hidden" name="DonorId" class="modalDonorItem_Id" />
+            <form asp-action="Create" asp-controller="Requisition">
+                <input
+                    type="hidden"
+                    asp-for="FoodId"
+                    class="modalFoodItem_Id"
+                />
+                <input
+                    type="hidden"
+                    asp-for="DonorId"
+                    class="modalDonorItem_Id"
+                />
 
                 <div class="modal-body">
                     <div class="input-group mb-2" data-alere-dynamic-display="true">
@@ -27,7 +36,7 @@
                             class="form-control"
                             placeholder="Digite uma mensagem para o doador"
                             id="requisitionMessage"
-                            name="Message"
+                            asp-for="Message"
                             style="min-height: 100px"
                         ></textarea>
                         <label for="requisitionMessage">Mensagem</label>

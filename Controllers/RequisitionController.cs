@@ -25,8 +25,18 @@ namespace Alere.Controllers
             return View(requisitions);
         }
 
+        [HttpPost]
         public IActionResult Create(Requisition requisition)
         {
+            var sessionUser = SessionHelper.GetObjectFromSession<User>(HttpContext.Session, SessionKeys.USER_KEY.ToString());
+
+            if (sessionUser == null)
+            {
+                return RedirectToAction("Index", "Login", new { error = "Tempo de sessão expirado. Realize o acesso novamente." });
+            }
+
+            requisition.ReceiverId = sessionUser.UserId;
+
             _repo.Store(requisition);
             _repo.Commit();
 
