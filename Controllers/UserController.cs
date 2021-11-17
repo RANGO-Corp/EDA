@@ -1,6 +1,7 @@
 using Alere.Helpers;
 using Alere.Models;
 using Alere.Repositories;
+using Alere.TagHelpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -47,6 +48,9 @@ namespace Alere.Controllers
             _repo.Commit();
 
             SessionHelper.SetObjectToSession(HttpContext.Session, SessionKeys.USER_KEY.ToString(), user);
+
+            TempData["msg"] = "Informações atualizadas com sucesso.";
+            TempData["severity"] = Severity.success;
 
             return RedirectToAction("Profile");
         }
