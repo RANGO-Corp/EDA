@@ -1,6 +1,7 @@
 @model FoodViewModel
 @{
     ViewData["Title"] = "Alimentos";
+    var actionMessage = ViewData["ActionMessage"] ??= "Que tal ser o primeiro?";
     var user = SessionHelper.GetObjectFromSession<User>(Context.Session, SessionKeys.USER_KEY.ToString());
     var hasUser = user != null;
 }
@@ -18,7 +19,7 @@
                         asp-action="Create"
                         class="btn btn-link"
                     >
-                        Que tal ser o primeiro?
+                        @actionMessage
                     </a>
                 }
                 else
@@ -29,11 +30,12 @@
                         data-bs-toggle="modal"
                         data-bs-target="#requisitionFoodModal"
                         data-modal-action-text="o cadastro"
-                    >Que tal ser o primeiro?</button>
+                    >@actionMessage</button>
                 }
             </div>
         </div>
     }
+
     @foreach(var food in Model.Foods)
     {
         var isSameUser = user?.UserId == food.UserId;

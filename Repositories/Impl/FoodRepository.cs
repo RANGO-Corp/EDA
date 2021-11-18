@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Alere.Models;
 using Alere.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +29,17 @@ namespace Alere.Repositories.Impl
                         .Include(f => f.User)
                         .Include(f => f.User.Address)
                         .ToList()
+                    ;
+        }
+
+        public IList<Food> FindAllByCondition(Expression<Func<Food, bool>> condition)
+        {
+            return _context
+                        .Foods
+                        .Include(e => e.User)
+                        .Include(e => e.User.Address)
+                        .Where(condition)
+                    .ToList()
                     ;
         }
 

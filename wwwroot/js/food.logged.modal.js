@@ -1,4 +1,15 @@
 $(document).ready(function() {
+    $("[data-path]").click(function() {
+        const element = this;
+
+        const foodId = $(".modalFoodItem_Id").val();
+
+        const path = $(element).data("path");
+        const resource = $(element).data("resource");
+        const redirectUrl = `${path}/${resource}`;
+
+        window.location.href = new URL(`${redirectUrl}/${foodId}`, window.location.href).href;
+    });
     $(".make-requisition").click(function() {
         const element = this;
 
@@ -13,8 +24,11 @@ $(document).ready(function() {
         $("#requisitionFoodModalCloseText").text(modalCloseText);
         
         $("[data-alere-dynamic-display]").removeClass("collapse");
+        $("[data-path]").addClass("collapse");
+
         if(modalIsMinimal) {
             $("[data-alere-dynamic-display]").addClass("collapse");
+            $("[data-path]").removeClass("collapse");
         }
 
         // Food data

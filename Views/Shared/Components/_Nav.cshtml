@@ -14,10 +14,46 @@
             />
         </a>
 
-        <div class="d-inline-flex order-sm-1 align-items-center">
+        <div class="d-inline-flex order-sm-1 align-items-center gap-2">
+            <div
+                condition="@hasUser"
+                class="dropdown"
+            >
+                <button
+                    type="button"
+                    id="userDropdownMenuActions"
+                    class="btn dropdown-toggle d-inline-flex justify-content-centers align-items-center"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                >
+                    <span class="material-icons">add</span>
+                </button>
+
+                <ul
+                    class="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="userDropdownMenuActions"
+                >
+                    <li>
+                        <a
+                            class="dropdown-item"
+                            asp-controller="Food"
+                            asp-action="Create"
+                        >Nova doação</a>
+                    </li>
+                    <li>
+                        <a
+                            class="dropdown-item"
+                            asp-controller="Food"
+                            asp-action="Index"
+                            asp-route-userid="@user.UserId"
+                        >Suas doações</a>
+                    </li>
+                </ul>
+            </div>
+
             <a
                 condition="!hasUser"
-                class="btn btn-primary me-3 me-sm-0"
+                class="btn btn-primary"
                 asp-controller="Home"
                 asp-action="Login"
             >
@@ -26,11 +62,11 @@
 
             <div
                 condition="@hasUser"
-                class="dropdown ms-3"
+                class="dropdown"
             >
                 <button
                     type="button"
-                    id="userDropdownMenuActions"
+                    id="userDropdownMenuSettings"
                     class="nav-link dropdown-toggle img-wrapper p-0"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
@@ -43,7 +79,7 @@
                 </button>
                 <ul
                     class="dropdown-menu dropdown-menu-end"
-                    aria-labelledby="userDropdownMenuActions"
+                    aria-labelledby="userDropdownMenuSettings"
                 >
                     <li class="d-sm-none">
                         <a
@@ -108,14 +144,14 @@
             <ul class="navbar-nav flex-grow-1">
                 <li class="nav-item">
                     <a
-                        class="nav-link text-dark"
+                        class="nav-link"
                         asp-controller="User"
                         asp-action="Index"
                     >Usuários</a>
                 </li>
                 <li class="nav-item">
                     <a
-                        class="nav-link text-dark"
+                        class="nav-link"
                         asp-controller="Food"
                         asp-action="Index"
                     >Doações</a>

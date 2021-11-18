@@ -1,3 +1,4 @@
+using Alere.Helpers;
 using Alere.Models;
 using Alere.Repositories;
 using Alere.ViewModels;
@@ -26,12 +27,17 @@ namespace Alere.Controllers
             ViewBag.users = new SelectList(users, "UserId", "Name");
         }
 
-        public IActionResult Index()
+        public IActionResult Index(long? userId)
         {
             FoodViewModel viewModel = new FoodViewModel()
             {
-                Foods = _repo.FindAll()
+                Foods = _repo.FindAllByCondition(c => c.UserId == userId || userId == null)
             };
+
+            if (userId != null)
+            {
+                ViewData["ActionMessage"] = "Que tal cadastrar sua primeira doação?";
+            }
 
             return View(viewModel);
         }

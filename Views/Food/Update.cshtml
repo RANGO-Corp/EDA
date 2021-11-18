@@ -1,17 +1,13 @@
 @{
     ViewData["Title"] = "Atualizar informações";
+    ViewData["FormActionButton.PrimaryActionText"] = "Atualizar";
 }
-<form asp-action="update">
 
+<form asp-action="update">
     <partial name="_Form" />
 
-    <div class="d-flex justify-content-end">
-        <div class="btn-group">
-            <a asp-action="index" asp-controller="food">Principal</a>
-            <button type="submit">
-                <span>Atualizar</span>
-            </button>
-        </div>
-    </div>
-
+    <partial
+        name="Components/_FormActionButton"
+        view-data="ViewData"
+    />
 </form>
