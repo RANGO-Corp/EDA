@@ -6,7 +6,7 @@ namespace Alere.Repositories
     {
         void Store(E entity);
         void Update(E entity);
-        void Commit();
+        int Commit();
         E FindById(K id);
         IList<E> FindAll();
     }

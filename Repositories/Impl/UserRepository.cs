@@ -17,9 +17,9 @@ namespace Alere.Repositories.Impl
             _context = context;
         }
 
-        public void Commit()
+        public int Commit()
         {
-            _context.SaveChanges();
+            return _context.SaveChanges();
         }
 
         public IList<User> FindAll()
