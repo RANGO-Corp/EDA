@@ -9,5 +9,6 @@ namespace Alere.Repositories
     {
 
         IList<Food> FindAllByCondition(Expression<Func<Food, bool>> condition);
+        Food FindByCondition(Expression<Func<Food, bool>> condition);
     }
 }

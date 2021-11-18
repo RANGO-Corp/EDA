@@ -27,8 +27,8 @@ namespace Alere.Repositories.Impl
             return _context
                         .Foods
                         .Include(f => f.User)
-                        .Include(f => f.User.Address)
-                        .ToList()
+                            .ThenInclude(f => f.Address)
+                    .ToList()
                     ;
         }
 
@@ -37,9 +37,20 @@ namespace Alere.Repositories.Impl
             return _context
                         .Foods
                         .Include(e => e.User)
-                        .Include(e => e.User.Address)
+                            .ThenInclude(e => e.Address)
                         .Where(condition)
                     .ToList()
+                    ;
+        }
+
+        public Food FindByCondition(Expression<Func<Food, bool>> condition)
+        {
+            return _context
+                        .Foods
+                        .Include(e => e.User)
+                            .ThenInclude(e => e.Address)
+                        .Where(condition)
+                    .FirstOrDefault()
                     ;
         }
 
@@ -48,7 +59,7 @@ namespace Alere.Repositories.Impl
             return _context
                         .Foods
                         .Where(f => f.FoodId == id)
-                        .FirstOrDefault()
+                    .FirstOrDefault()
                     ;
         }
 
@@ -60,6 +71,8 @@ namespace Alere.Repositories.Impl
         public void Update(Food entity)
         {
             _context.Foods.Update(entity);
+
+            _context.Entry(entity).Property(p => p.UserId).IsModified = false;
         }
     }
 }

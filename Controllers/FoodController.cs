@@ -1,9 +1,9 @@
 using Alere.Helpers;
 using Alere.Models;
 using Alere.Repositories;
+using Alere.TagHelpers;
 using Alere.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 
 namespace Alere.Controllers
@@ -19,12 +19,6 @@ namespace Alere.Controllers
             _logger = logger;
             _repo = repo;
             _repoUser = repoUser;
-        }
-
-        private void LoadUsersSelect()
-        {
-            var users = _repoUser.FindAll();
-            ViewBag.users = new SelectList(users, "UserId", "Name");
         }
 
         public IActionResult Index(long? userId)
@@ -45,7 +39,16 @@ namespace Alere.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            LoadUsersSelect();
+            var sessionUser = SessionHelper.GetObjectFromSession<User>(HttpContext.Session, SessionKeys.USER_KEY.ToString());
+
+            if (sessionUser == null)
+            {
+                return RedirectToAction("Login", "Home", new 
+                {
+                    error = "Tempo de sessão expirado. Realize o acesso novamente." 
+                });
+            }
+
             return View();
         }
 
@@ -69,8 +72,24 @@ namespace Alere.Controllers
         [HttpGet]
         public IActionResult Update(long id)
         {
-            var food = _repo.FindById(id);
-            LoadUsersSelect();
+            var sessionUser = SessionHelper.GetObjectFromSession<User>(HttpContext.Session, SessionKeys.USER_KEY.ToString());
+
+            if (sessionUser == null)
+            {
+                return RedirectToAction("Login", "Home", new 
+                {
+                    error = "Tempo de sessão expirado. Realize o acesso novamente." 
+                });
+            }
+
+            var food = _repo.FindByCondition(c => (c.FoodId == id && c.UserId == sessionUser.UserId));
+            if (food == null)
+            {
+                TempData["msg"] = "Não é permitido alterar a doação de outro usuário.";
+                TempData["severity"] = Severity.danger;
+                return RedirectToAction("Index");
+            }
+
             return View(food);
         }
 
@@ -86,7 +105,7 @@ namespace Alere.Controllers
             _repo.Update(food);
             _repo.Commit();
 
-            TempData["msg"] = $"Alimento {food.Name} atualizado";
+            TempData["msg"] = "Alimento atualizado";
 
             return RedirectToAction("Index");
         }
