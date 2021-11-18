@@ -25,7 +25,10 @@ namespace Alere.Controllers
 
             if (sessionUser == null)
             {
-                return RedirectToAction("Index", "Login", new { error = "Tempo de sessão expirado. Realize o acesso novamente." });
+                return RedirectToAction("Login", "Home", new 
+                {
+                    error = "Tempo de sessão expirado. Realize o acesso novamente." 
+                });
             }
 
             var requisitions = _repo.FindAllByCondition(c => c.DonorId == sessionUser.UserId);
@@ -39,7 +42,10 @@ namespace Alere.Controllers
 
             if (sessionUser == null)
             {
-                return RedirectToAction("Index", "Login", new { error = "Tempo de sessão expirado. Realize o acesso novamente." });
+                return RedirectToAction("Login", "Home", new 
+                {
+                    error = "Tempo de sessão expirado. Realize o acesso novamente." 
+                });
             }
 
             requisition.ReceiverId = sessionUser.UserId;
