@@ -21,14 +21,11 @@ namespace Alere.Controllers
 
         public IActionResult Index()
         {
-            var sessionUser = SessionHelper.GetObjectFromSession<User>(HttpContext.Session, SessionKeys.USER_KEY.ToString());
+            var sessionUser = GetSessionUser();
 
             if (sessionUser == null)
             {
-                return RedirectToAction("Login", "Home", new 
-                {
-                    error = "Tempo de sessão expirado. Realize o acesso novamente." 
-                });
+                return RedirectWithExpiredSession();
             }
 
             var requisitions = _repo.FindAllByCondition(c => c.DonorId == sessionUser.UserId);
@@ -38,14 +35,11 @@ namespace Alere.Controllers
         [HttpPost]
         public IActionResult Create(Requisition requisition)
         {
-            var sessionUser = SessionHelper.GetObjectFromSession<User>(HttpContext.Session, SessionKeys.USER_KEY.ToString());
+            var sessionUser = GetSessionUser();
 
             if (sessionUser == null)
             {
-                return RedirectToAction("Login", "Home", new 
-                {
-                    error = "Tempo de sessão expirado. Realize o acesso novamente." 
-                });
+                return RedirectWithExpiredSession();
             }
 
             requisition.ReceiverId = sessionUser.UserId;
@@ -57,6 +51,41 @@ namespace Alere.Controllers
             TempData["severity"] = Severity.success;
 
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Approve(long id)
+        {
+            var sessionUser = GetSessionUser();
+
+            _repo.SetStatusByCondition(Status.APPROVED, c => (c.RequisitionId == id && c.DonorId == sessionUser.UserId));
+            _repo.Commit();
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Deny(long id)
+        {
+            var sessionUser = GetSessionUser();
+
+            _repo.SetStatusByCondition(Status.REFUSED, c => (c.RequisitionId == id && c.DonorId == sessionUser.UserId));
+            _repo.Commit();
+
+            return RedirectToAction("Index");
+        }
+
+        private IActionResult RedirectWithExpiredSession()
+        {
+            return RedirectToAction("Login", "Home", new
+            {
+                error = "Tempo de sessão expirado. Realize o acesso novamente."
+            });
+        }
+
+        private User GetSessionUser()
+        {
+            return SessionHelper.GetObjectFromSession<User>(HttpContext.Session, SessionKeys.USER_KEY.ToString());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -39,6 +39,17 @@ namespace Alere.Repositories.Impl
                     ;
         }
 
+        public Requisition FindByCondition(Expression<Func<Requisition, bool>> condition)
+        {
+            return _context
+                        .Requisitions
+                        .Include(e => e.Receiver)
+                        .Include(e => e.Food)
+                        .Where(condition)
+                    .FirstOrDefault()
+                    ;
+        }
+
         public Requisition FindById(long id)
         {
             return _context
@@ -46,6 +57,13 @@ namespace Alere.Repositories.Impl
                         .Where(e => e.RequisitionId == id)
                         .FirstOrDefault()
                     ;
+        }
+
+        public void SetStatusByCondition(Status status, Expression<Func<Requisition, bool>> condition)
+        {
+            Requisition requisition = FindByCondition(condition);
+            requisition.Status = status;
+            Update(requisition);
         }
 
         public void Store(Requisition entity)
@@ -56,6 +74,7 @@ namespace Alere.Repositories.Impl
         public void Update(Requisition entity)
         {
             _context.Requisitions.Update(entity);
+            _context.Entry(entity).Property(p => p.Date).IsModified = false;
         }
     }
 }
