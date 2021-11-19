@@ -6,9 +6,11 @@ Mais detalhes estão presentes na tela principal da aplicação.
 
 ## Integrantes - Turma 2TDST
 
-|  RM   | Integrante                           |
-| :---: | ------------------------------------ |
-| 84198 | Daiane Estenio dos Santos            |
-| 84717 | Jacó Magalhães I Sen Chen            |
-| 85568 | João Victor Pessoa Queiroz           |
-| 85398 | Luís Fernando Pedro Paulino da Silva |
+| Turma  | 2TDST                                |
+| :----: | ------------------------------------ |
+| **RM** | **Integrante**                       |
+|        |                                      |
+| 84198  | Daiane Estenio dos Santos            |
+| 84717  | Jacó Magalhães I Sen Chen            |
+| 85568  | João Victor Pessoa Queiroz           |
+| 85398  | Luís Fernando Pedro Paulino da Silva |
