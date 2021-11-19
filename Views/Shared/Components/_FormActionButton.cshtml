@@ -3,9 +3,18 @@
     var SecondaryActionText = ViewData["FormActionButton.SecondaryActionText"] ??= "Principal";
     var SecondaryAction = ViewData["FormActionButton.SecondaryAction"] ??= "Index";
     var SecondaryController = ViewData["FormActionButton.SecondaryController"] ??= "Home";
+    var DangerActionText = ViewData["FormActionButton.DangerActionText"] ??= "Excluir";
+    var HasDangerAction = ViewData["FormActionButton.HasDangerAction"] != null;
 }
 
 <div class="d-flex justify-content-end gap-2">
+    <button
+        condition="@HasDangerAction"
+        type="button"
+        class="btn btn-outline-danger flex-grow-1 flex-md-grow-0"
+        data-bs-toggle="modal"
+        data-bs-target="#dangerActionModal"
+    >@DangerActionText</button>
     <a
         asp-action="@SecondaryAction"
         asp-controller="@SecondaryController"

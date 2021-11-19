@@ -13,10 +13,13 @@ namespace Alere.Controllers
 
         private IUserRepository _repo;
 
-        public UserController(ILogger<UserController> logger, IUserRepository repo)
+        private IRequisitionRepository _repoRequisition;
+
+        public UserController(ILogger<UserController> logger, IUserRepository repo, IRequisitionRepository repoRequisition)
         {
             _logger = logger;
             _repo = repo;
+            _repoRequisition = repoRequisition;
         }
 
         public IActionResult Index()
@@ -30,6 +33,8 @@ namespace Alere.Controllers
         public IActionResult Profile(long id)
         {
             var user = _repo.FindById(id);
+
+            ViewData["FormActionButton.HasDangerAction"] = true;
 
             return View(user);
         }
@@ -53,6 +58,31 @@ namespace Alere.Controllers
             TempData["severity"] = Severity.success;
 
             return RedirectToAction("Profile");
+        }
+
+        [HttpPost]
+        public IActionResult Remove(long id)
+        {
+            User user = _repo.FindById(id);
+
+            var hasActiveDonations = user.Foods.Count > 0;
+            var hasActiveTransactions = _repoRequisition.FindAllByCondition(c => c.ReceiverId == user.UserId).Count > 0;
+
+            if (hasActiveDonations || hasActiveTransactions)
+            {
+                TempData["msg"] = "Ação inválida. Não é possível realizar a exclusão tendo doações ativas. Por favor, contate o administrador.";
+                TempData["severity"] = Severity.danger;
+
+                return RedirectToAction("Index");
+            }
+
+            _repo.RemoveById(id);
+            _repo.Commit();
+
+            TempData["msg"] = "Volte novamente em breve.";
+            TempData["severity"] = Severity.info;
+
+            return RedirectToAction("Index", "Home");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -1,0 +1,50 @@
+@model User
+
+<div
+    class="modal fade"
+    id="dangerActionModal"
+    data-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="dangerActionModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5
+                    class="modal-title"
+                    id="dangerActionModalLabel"
+                >Você tem total certeza?</h5>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                ></button>
+            </div>
+
+            <div class="modal-body">
+                <p>
+                    Essa ação não poderá ser revertida. 
+                    Isso fará com que o os seus dados sejam completamente removidos.
+                </p>
+            </div>
+
+            <div class="modal-footer justify-content-center">
+                <form asp-action="remove" method="post" class="w-100">
+                    <input
+                        type="hidden"
+                        asp-for="UserId"
+                        name="id"
+                    />
+                    <button
+                        type="submit"
+                        class="btn btn-outline-danger w-100 font-weight-bold"
+                    >
+                        Entendo as consequências, remova o meu cadastro da plataforma
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

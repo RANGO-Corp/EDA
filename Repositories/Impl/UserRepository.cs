@@ -47,9 +47,17 @@ namespace Alere.Repositories.Impl
             return _context
                         .Users
                         .Include(u => u.Address)
+                        .Include(p => p.Foods)
                         .Where(u => u.UserId == id)
                         .FirstOrDefault()
                     ;
+        }
+
+        public void RemoveById(long id)
+        {
+            User user = _context.Users.Find(id);
+
+            _context.Users.Remove(user);
         }
 
         public void Store(User entity)
