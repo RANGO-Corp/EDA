@@ -4,7 +4,7 @@ A ideia do projeto consiste em que usuários possam realizar doações para outr
 
 Mais detalhes estão presentes na tela principal da aplicação.
 
-## Integrantes - Turma 2TDST
+## Integrantes
 
 | Turma  | 2TDST                                |
 | :----: | ------------------------------------ |
