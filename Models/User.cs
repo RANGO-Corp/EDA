@@ -12,13 +12,14 @@ namespace Alere.Models
         [HiddenInput, Column("Id")]
         public long UserId { get; set; }
 
-        [Display(Name = "Nome")]
+        [Required(ErrorMessage = "Nome deve ser preenchido"), Display(Name = "Nome")]
         public string Name { get; set; }
 
-        [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "Email deve ser preenchido"), DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Display(Name = "Senha"), DataType(DataType.Password), MinLength(6, ErrorMessage = "Mínimo de 6 caracteres")]
+        [Display(Name = "Senha"), DataType(DataType.Password),]
+        [Required(ErrorMessage = "Senha deve ser preenchida"), StringLength(255, MinimumLength = 6, ErrorMessage = "Mínimo de 6 caracteres")]
         public string Password { get; set; }
 
         [Display(Name = "Telefone"), DataType(DataType.PhoneNumber)]

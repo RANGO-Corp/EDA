@@ -43,9 +43,9 @@ namespace Alere.Controllers
 
             if (sessionUser == null)
             {
-                return RedirectToAction("Login", "Home", new 
+                return RedirectToAction("Login", "Home", new
                 {
-                    error = "Tempo de sessão expirado. Realize o acesso novamente." 
+                    error = "Tempo de sessão expirado. Realize o acesso novamente."
                 });
             }
 
@@ -55,6 +55,11 @@ namespace Alere.Controllers
         [HttpPost]
         public IActionResult Create(Food food)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             // Setted EMPTY instead of WHITESPACE to permits tests without require image
             if (string.IsNullOrEmpty(food.UrlImage))
             {
@@ -76,9 +81,9 @@ namespace Alere.Controllers
 
             if (sessionUser == null)
             {
-                return RedirectToAction("Login", "Home", new 
+                return RedirectToAction("Login", "Home", new
                 {
-                    error = "Tempo de sessão expirado. Realize o acesso novamente." 
+                    error = "Tempo de sessão expirado. Realize o acesso novamente."
                 });
             }
 
@@ -96,6 +101,11 @@ namespace Alere.Controllers
         [HttpPost]
         public IActionResult Update(Food food)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             // Setted EMPTY instead of WHITESPACE to permits tests without require image
             if (string.IsNullOrEmpty(food.UrlImage))
             {

@@ -11,6 +11,7 @@ namespace Alere.Models
         [Column("Id"), HiddenInput]
         public long FoodId { get; set; }
 
+        [Required(ErrorMessage = "Nome deve ser preenchido")]
         [Display(Name = "Nome")]
         public string Name { get; set; }
 
@@ -25,6 +26,7 @@ namespace Alere.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? ManufacturedAt { get; set; }
 
+        [Required(ErrorMessage = "Data de validade deve ser informada")]
         [Display(Name = "Data de Validade"), DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime ExpireAt { get; set; }

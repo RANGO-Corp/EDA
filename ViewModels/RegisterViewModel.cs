@@ -7,10 +7,13 @@ namespace Alere.ViewModels
     {
         public User User { get; set; }
 
-        [Required, DataType(DataType.Password)]
+        [Required(ErrorMessage = "Senha inválida"), DataType(DataType.Password)]
+        [StringLength(255, MinimumLength = 6, ErrorMessage = "Mínimo de 6 caracteres")]
         public string Password { get; set; }
 
-        [Required, DataType(DataType.Password), Compare(nameof(Password), ErrorMessage = "Senha não coincide. Verifique as senhas.")]
+        [Required(ErrorMessage = "Senha inválida"), DataType(DataType.Password)]
+        [Compare(nameof(Password), ErrorMessage = "Senhas não coincidem.")]
+        [StringLength(255, MinimumLength = 6, ErrorMessage = "Mínimo de 6 caracteres")]
         public string ConfirmPassword { get; set; }
     }
 }

@@ -55,6 +55,11 @@ namespace Alere.Controllers
                     .Password;
             }
 
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             _repo.Update(user);
             _repo.Commit();
 
