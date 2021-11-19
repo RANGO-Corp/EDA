@@ -30,13 +30,19 @@ namespace Alere.Controllers
         }
 
         [HttpGet]
-        public IActionResult Profile(long id)
+        public IActionResult Profile()
         {
-            var user = _repo.FindById(id);
+            var sessionUser = SessionHelper.GetObjectFromSession<User>(HttpContext.Session, SessionKeys.USER_KEY.ToString());
+
+            if (sessionUser == null)
+            {
+                TempData["msg"] = "Ação não disponível sem estar conectado";
+                return RedirectToAction("Login", "Home");
+            }
 
             ViewData["FormActionButton.HasDangerAction"] = true;
 
-            return View(user);
+            return View(sessionUser);
         }
 
         [HttpPost]
