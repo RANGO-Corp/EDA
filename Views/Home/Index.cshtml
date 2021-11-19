@@ -2,7 +2,48 @@
     ViewData["Title"] = "Principal";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<ul class="list-group">
+    <li class="list-group-item">
+        <div>
+            <div class="fw-bold">Ideia central</div>
+            A ideia do projeto consiste em que usuários possam realizar doações
+            para outros usuários, sendo ONGs, pessoas físicas ou quaisquer outras.
+            <span class="d-block">Não é controlado qualquer tipo de doação efetivada no momento, tendo apenas o registro
+                em plataforma.</span>
+        </div>
+    </li>
+    <li class="list-group-item">
+        <div>
+            <div class="fw-bold">Doações</div>
+            Funcionalidade para cadastro e atualização dos dados de um determinado alimento.
+            Também sendo possível listar e realizar a reserva de um alimento.
+            <span class="d-block">Todas as doações são exibidas publicamente, e isso contribue
+                justamente em poder visualizar alguns dados dos alimentos antes de o usuário decidir tentar
+                reservá-lo.</span>
+            <span class="d-block">Para reservar um alimento, é necessário que o usuário esteja autenticado na
+                plataforma.</span>
+        </div>
+    </li>
+    <li class="list-group-item">
+        <div>
+            <div class="fw-bold">Usuários</div>
+            Funcionalidade para cadastro e atualização dos dados de usuário.
+            É possível também fazer a listagem e excluir o usuário (caso não possua doações ativas).
+            <span class="d-block">Todos os usuários cadastrados na plataforma são exibidos publicamente e isso contribue
+                justamente por mostrar quantos usuário estão ativos na plataforma e a quantidade de alimentos cadastros
+                por ele.
+            </span>
+        </div>
+    </li>
+    <li class="list-group-item">
+        <div>
+            <div class="fw-bold">Solicitações</div>
+            Funcionalidade cuja exibe os pedidos de reserva ativos do usuário.
+            <span class="d-block">Só é possível visualizar quando o usuário está autenticado na plataforma.</span>
+            <span class="d-block">Nesta seção, o usuário (doador) que recebeu a solicitação pode escolher aprovar ou
+                rejeitar a solicitação. (sendo que, aprovando, qualquer outra solicitação que esteja pendente para
+                aquele alimento será automaticamente rejeitado)
+            </span>
+        </div>
+    </li>
+</ul>
