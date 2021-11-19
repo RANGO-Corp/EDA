@@ -31,9 +31,6 @@ namespace Alere.Models
 
         public DateTime CreatedAt { get; private set; } = DateTime.Now;
 
-        public virtual ICollection<Requisition> OrdersReceived { get; set; }
-        public virtual ICollection<Requisition> OrdersPlaced { get; set; }
-        
         // 1 : N
         public virtual ICollection<Food> Foods { get; set; }
     }

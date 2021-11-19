@@ -25,7 +25,7 @@ namespace Alere.Controllers
         {
             FoodViewModel viewModel = new FoodViewModel()
             {
-                Foods = _repo.FindAllByCondition(c => (c.UserId == userId || userId == null) && c.IsReserved != true)
+                Foods = _repo.FindAllByCondition(c => (c.UserId == userId || userId == null) && !c.IsReserved)
             };
 
             if (userId != null)
