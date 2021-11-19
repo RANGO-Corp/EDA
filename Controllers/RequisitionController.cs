@@ -13,10 +13,13 @@ namespace Alere.Controllers
 
         private IRequisitionRepository _repo;
 
-        public RequisitionController(ILogger<RequisitionController> logger, IRequisitionRepository repo)
+        private IFoodRepository _repoFood;
+
+        public RequisitionController(ILogger<RequisitionController> logger, IRequisitionRepository repo, IFoodRepository repoFood)
         {
             _logger = logger;
             _repo = repo;
+            _repoFood = repoFood;
         }
 
         public IActionResult Index()
@@ -54,12 +57,29 @@ namespace Alere.Controllers
         }
 
         [HttpPost]
-        public IActionResult Approve(long id)
+        public IActionResult Approve(long id, long foodId)
         {
             var sessionUser = GetSessionUser();
 
             _repo.SetStatusByCondition(Status.APPROVED, c => (c.RequisitionId == id && c.DonorId == sessionUser.UserId));
-            _repo.Commit();
+            int lines = _repo.Commit();
+
+            if (lines == 1)
+            {
+                _repo.SetStatusByCondition(Status.REFUSED, c =>
+                    (c.DonorId == sessionUser.UserId && c.Status.Equals(Status.AWAITING))
+                );
+
+                var food = _repoFood.FindByCondition(c => (c.FoodId == foodId && c.UserId == sessionUser.UserId));
+
+                if (food != null)
+                {
+                    food.IsReserved = true;
+                    _repoFood.Update(food);
+                }
+
+                _repo.Commit();
+            }
 
             return RedirectToAction("Index");
         }

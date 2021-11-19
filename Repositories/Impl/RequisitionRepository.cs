@@ -61,9 +61,14 @@ namespace Alere.Repositories.Impl
 
         public void SetStatusByCondition(Status status, Expression<Func<Requisition, bool>> condition)
         {
-            Requisition requisition = FindByCondition(condition);
-            requisition.Status = status;
-            Update(requisition);
+            var requisitions = FindAllByCondition(condition);
+            
+            foreach (var requisition in requisitions)
+            {
+                requisition.Status = status;
+            }
+            
+            Update(requisitions);
         }
 
         public void Store(Requisition entity)
@@ -75,6 +80,11 @@ namespace Alere.Repositories.Impl
         {
             _context.Requisitions.Update(entity);
             _context.Entry(entity).Property(p => p.Date).IsModified = false;
+        }
+
+        public void Update(IList<Requisition> entities)
+        {
+            _context.Requisitions.UpdateRange(entities);
         }
     }
 }
